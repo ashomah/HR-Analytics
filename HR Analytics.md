@@ -455,8 +455,8 @@ for i in sorted(categories.keys()):
 
     salary:
     ['low', 'medium', 'high']
-
-
+    
+    
     sales:
     ['sales', 'accounting', 'hr', 'technical', 'support', 'management', 'IT', 'product_mng', 'marketing', 'RandD']
 
@@ -473,8 +473,8 @@ The dataset contains 10 variables with no NAs:
 
 - `satisfaction_level`: numerical, decimal values between 0 and 1.  
   *Employee satisfaction level, from 0 to 1.*
-
-
+  
+  
 - `last_evaluation`: numerical, decimal values between 0 and 1.  
   *Employee last evaluation score, from 0 to 1.*
 
@@ -485,28 +485,28 @@ The dataset contains 10 variables with no NAs:
 
 - `average_montly_hours`: numerical, integer values between 96 and 310.  
   *Average monthly hours worked by the employee.*
-
-
+  
+  
 - `time_spend_company`: numerical, integer values between 2 and 10.  
   *Number of years spent in the company by the employee.*
-
-
+  
+  
 - `Work_acident`: encoded categorical, boolean.  
   *Flag indicating if the employee had a work accident.*
-
-
+  
+  
 - `left`: encoded categorical, boolean.  
   *Flag indicating if the employee has left the company. This is the __target variable__ of the study, the one to be modelled.*
-
-
+  
+  
 - `promotion_last_5years`: encoded categorical, boolean.  
   *Flag indicating if the employee has been promoting within the past 5 years.*
 
 
-- `department`: categorical, 10 values.
+- `department`: categorical, 10 values. 
   *Department of the employee: Sales, Accounting, HR, Technical, Support, Management, IT, Product Management, Marketing, R&D.*
-
-
+  
+  
 - `salary`: categorical, 3 values.  
   *Salary level of the employee: Low, Medium, High.*
 
@@ -669,8 +669,8 @@ print(hr.groupby('salary')['left'].mean())
     medium    42.976198
     high       8.247216
     Name: salary, dtype: float64
-
-
+    
+    
     Turnover Rate by Salary level
     salary
     high      0.066289
@@ -1006,7 +1006,7 @@ plt.tight_layout()
 ![png](output_73_0.png)
 
 
-Employees with **more than 4 projects** seem to have **higher evaluations** but leave the company. Employees with **2 projects and a low evaluation** leave the company.
+Employees with **more than 4 projects** seem to have **higher evaluations** but leave the company. Employees with **2 projects and a low evaluation** leave the company. 
 
 #### Last Evaluation vs Average Monthly Hours
 
@@ -1209,9 +1209,9 @@ def onehot_encode(df):
     numericals = df.get(numerical_features(df))
     new_df = numericals.copy()
     for categorical_column in categorical_features(df):
-        new_df = pd.concat([new_df,
-                            pd.get_dummies(df[categorical_column],
-                                           prefix=categorical_column)],
+        new_df = pd.concat([new_df, 
+                            pd.get_dummies(df[categorical_column], 
+                                           prefix=categorical_column)], 
                            axis=1)
     return new_df
 ```
@@ -1797,11 +1797,11 @@ The skewness of the scaled variables is then fixed.
 
 ```python
 def feature_skewness(df):
-    numeric_dtypes = ['int16', 'int32', 'int64',
+    numeric_dtypes = ['int16', 'int32', 'int64', 
                       'float16', 'float32', 'float64']
     numeric_features = []
     for i in df.columns:
-        if df[i].dtype in numeric_dtypes:
+        if df[i].dtype in numeric_dtypes: 
             numeric_features.append(i)
 
     feature_skew = df[numeric_features].apply(
@@ -1816,7 +1816,7 @@ def fix_skewness(df):
     feature_skew, numeric_features = feature_skewness(df)
     high_skew = feature_skew[feature_skew > 0.5]
     skew_index = high_skew.index
-
+    
     for i in skew_index:
         df[i] = boxcox1p(df[i], boxcox_normmax(df[i]+1))
 
@@ -2603,7 +2603,7 @@ def lr_run(model, X_train, y_train, X_test, y_test):
     coefficients.loc[-1] = ['intercept.', model.intercept_[0]]
     coefficients.index = coefficients.index + 1
     coefficients = coefficients.sort_index()
-
+    
     print('Accuracy on test: {:.3f}'.format(acc_test))
     print()
     print(classification_report(y_test, y_pred))
@@ -2619,20 +2619,20 @@ lr_run(lr, X_train, y_train, X_test, y_test)
 ```
 
     Accuracy on test: 0.797
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.82      0.94      0.88      3435
                1       0.63      0.34      0.44      1065
-
+    
        micro avg       0.80      0.80      0.80      4500
        macro avg       0.73      0.64      0.66      4500
     weighted avg       0.78      0.80      0.77      4500
-
+    
     Confusion Matrix:
     [[3220  215]
      [ 700  365]]
-
+    
                        Feature     Coef.
     0               intercept.  0.652320
     1       satisfaction_level -3.616897
@@ -2710,7 +2710,7 @@ cv_acc(lr, X_train, y_train, 10, seed)
 ```
 
     10-fold cross validation average accuracy: 0.789
-
+    
     Iteration  1 | Accuracy: 0.79
     Iteration  2 | Accuracy: 0.77
     Iteration  3 | Accuracy: 0.78
@@ -2787,7 +2787,7 @@ lr_run(lr, X_fe_1_train, y_fe_1_train, X_fe_1_test, y_fe_1_test)
 ```
 
     10-fold cross validation average accuracy: 0.916
-
+    
     Iteration  1 | Accuracy: 0.92
     Iteration  2 | Accuracy: 0.92
     Iteration  3 | Accuracy: 0.90
@@ -2798,22 +2798,22 @@ lr_run(lr, X_fe_1_train, y_fe_1_train, X_fe_1_test, y_fe_1_test)
     Iteration  8 | Accuracy: 0.92
     Iteration  9 | Accuracy: 0.91
     Iteration 10 | Accuracy: 0.91
-
+    
     Accuracy on test: 0.914
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.94      0.95      0.94      3435
                1       0.83      0.79      0.81      1065
-
+    
        micro avg       0.91      0.91      0.91      4500
        macro avg       0.89      0.87      0.88      4500
     weighted avg       0.91      0.91      0.91      4500
-
+    
     Confusion Matrix:
     [[3266  169]
      [ 220  845]]
-
+    
                                     Feature     Coef.
     0                            intercept. -4.095534
     1                       last_evaluation  1.885761
@@ -2895,7 +2895,7 @@ lr_run(lr, X_fe_2_train, y_fe_2_train, X_fe_2_test, y_fe_2_test)
 ```
 
     10-fold cross validation average accuracy: 0.935
-
+    
     Iteration  1 | Accuracy: 0.93
     Iteration  2 | Accuracy: 0.93
     Iteration  3 | Accuracy: 0.93
@@ -2906,22 +2906,22 @@ lr_run(lr, X_fe_2_train, y_fe_2_train, X_fe_2_test, y_fe_2_test)
     Iteration  8 | Accuracy: 0.94
     Iteration  9 | Accuracy: 0.93
     Iteration 10 | Accuracy: 0.93
-
+    
     Accuracy on test: 0.936
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.95      0.97      0.96      3435
                1       0.88      0.84      0.86      1065
-
+    
        micro avg       0.94      0.94      0.94      4500
        macro avg       0.92      0.90      0.91      4500
     weighted avg       0.94      0.94      0.94      4500
-
+    
     Confusion Matrix:
     [[3315  120]
      [ 167  898]]
-
+    
                                     Feature     Coef.
     0                            intercept. -5.603085
     1                  average_montly_hours  2.193703
@@ -3009,7 +3009,7 @@ lr_run(lr, X_fe_3_train, y_fe_3_train, X_fe_3_test, y_fe_3_test)
 ```
 
     10-fold cross validation average accuracy: 0.944
-
+    
     Iteration  1 | Accuracy: 0.95
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.94
@@ -3020,22 +3020,22 @@ lr_run(lr, X_fe_3_train, y_fe_3_train, X_fe_3_test, y_fe_3_test)
     Iteration  8 | Accuracy: 0.95
     Iteration  9 | Accuracy: 0.94
     Iteration 10 | Accuracy: 0.93
-
+    
     Accuracy on test: 0.945
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.96      0.97      0.96      3435
                1       0.91      0.86      0.88      1065
-
+    
        micro avg       0.95      0.95      0.95      4500
        macro avg       0.93      0.92      0.92      4500
     weighted avg       0.94      0.95      0.94      4500
-
+    
     Confusion Matrix:
     [[3340   95]
      [ 151  914]]
-
+    
                                     Feature     Coef.
     0                            intercept. -4.893750
     1                        number_project  0.162189
@@ -3125,7 +3125,7 @@ lr_run(lr, X_fe_4_train, y_fe_4_train, X_fe_4_test, y_fe_4_test)
 ```
 
     10-fold cross validation average accuracy: 0.946
-
+    
     Iteration  1 | Accuracy: 0.94
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.94
@@ -3136,22 +3136,22 @@ lr_run(lr, X_fe_4_train, y_fe_4_train, X_fe_4_test, y_fe_4_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.94
     Iteration 10 | Accuracy: 0.94
-
+    
     Accuracy on test: 0.950
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.96      0.97      0.97      3435
                1       0.90      0.88      0.89      1065
-
+    
        micro avg       0.95      0.95      0.95      4500
        macro avg       0.93      0.93      0.93      4500
     weighted avg       0.95      0.95      0.95      4500
-
+    
     Confusion Matrix:
     [[3333  102]
      [ 125  940]]
-
+    
                                     Feature     Coef.
     0                            intercept. -2.841608
     1                    time_spend_company  0.507726
@@ -3244,7 +3244,7 @@ lr_run(lr, X_fe_5_train, y_fe_5_train, X_fe_5_test, y_fe_5_test)
 ```
 
     10-fold cross validation average accuracy: 0.956
-
+    
     Iteration  1 | Accuracy: 0.95
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.95
@@ -3255,22 +3255,22 @@ lr_run(lr, X_fe_5_train, y_fe_5_train, X_fe_5_test, y_fe_5_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-
+    
     Accuracy on test: 0.956
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.96      0.98      0.97      3435
                1       0.93      0.88      0.91      1065
-
+    
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-
+    
     Confusion Matrix:
     [[3362   73]
      [ 124  941]]
-
+    
                                            Feature     Coef.
     0                                   intercept. -1.288513
     1                                Work_accident -1.210856
@@ -3380,7 +3380,7 @@ lr_run(lr, X_fe_6_train, y_fe_6_train, X_fe_6_test, y_fe_6_test)
 ```
 
     10-fold cross validation average accuracy: 0.958
-
+    
     Iteration  1 | Accuracy: 0.95
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.95
@@ -3391,22 +3391,22 @@ lr_run(lr, X_fe_6_train, y_fe_6_train, X_fe_6_test, y_fe_6_test)
     Iteration  8 | Accuracy: 0.97
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-
+    
     Accuracy on test: 0.959
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.96      0.98      0.97      3435
                1       0.94      0.88      0.91      1065
-
+    
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-
+    
     Confusion Matrix:
     [[3377   58]
      [ 125  940]]
-
+    
                                            Feature     Coef.
     0                                   intercept. -0.766902
     1                                Work_accident -1.173201
@@ -3518,7 +3518,7 @@ lr_run(lr, X_fe_7_train, y_fe_7_train, X_fe_7_test, y_fe_7_test)
 ```
 
     10-fold cross validation average accuracy: 0.960
-
+    
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -3529,22 +3529,22 @@ lr_run(lr, X_fe_7_train, y_fe_7_train, X_fe_7_test, y_fe_7_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-
+    
     Accuracy on test: 0.958
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.96      0.98      0.97      3435
                1       0.93      0.88      0.91      1065
-
+    
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-
+    
     Confusion Matrix:
     [[3368   67]
      [ 123  942]]
-
+    
                                            Feature     Coef.
     0                                   intercept. -0.304227
     1                                Work_accident -1.223252
@@ -3662,7 +3662,7 @@ lr_run(lr, X_fe_8_train, y_fe_8_train, X_fe_8_test, y_fe_8_test)
 ```
 
     10-fold cross validation average accuracy: 0.960
-
+    
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -3673,22 +3673,22 @@ lr_run(lr, X_fe_8_train, y_fe_8_train, X_fe_8_test, y_fe_8_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-
+    
     Accuracy on test: 0.960
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.96      0.98      0.97      3435
                1       0.94      0.88      0.91      1065
-
+    
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-
+    
     Confusion Matrix:
     [[3377   58]
      [ 124  941]]
-
+    
                                            Feature     Coef.
     0                                   intercept.  0.110311
     1                                Work_accident -1.234954
@@ -3817,7 +3817,7 @@ lr_run(lr, X_fe_9_train, y_fe_9_train, X_fe_9_test, y_fe_9_test)
 ```
 
     10-fold cross validation average accuracy: 0.964
-
+    
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -3828,22 +3828,22 @@ lr_run(lr, X_fe_9_train, y_fe_9_train, X_fe_9_test, y_fe_9_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.96
-
+    
     Accuracy on test: 0.964
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.97      0.98      0.98      3435
                1       0.94      0.90      0.92      1065
-
+    
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.96      0.94      0.95      4500
     weighted avg       0.96      0.96      0.96      4500
-
+    
     Confusion Matrix:
     [[3379   56]
      [ 108  957]]
-
+    
                                            Feature     Coef.
     0                                   intercept.  0.155600
     1                                Work_accident -1.143174
@@ -4441,7 +4441,7 @@ lr_run(lr, X_fe_encoded_train, y_fe_encoded_train, X_fe_encoded_test, y_fe_encod
 ```
 
     10-fold cross validation average accuracy: 0.964
-
+    
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -4452,22 +4452,22 @@ lr_run(lr, X_fe_encoded_train, y_fe_encoded_train, X_fe_encoded_test, y_fe_encod
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.96
-
+    
     Accuracy on test: 0.964
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.97      0.98      0.98      3435
                1       0.94      0.90      0.92      1065
-
+    
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.96      0.94      0.95      4500
     weighted avg       0.96      0.96      0.96      4500
-
+    
     Confusion Matrix:
     [[3379   56]
      [ 108  957]]
-
+    
                                            Feature     Coef.
     0                                   intercept.  0.155600
     1                                Work_accident -1.143174
@@ -4599,7 +4599,7 @@ lr_run(lr, X_sel_train, y_sel_train, X_sel_test, y_sel_test)
 ```
 
     10-fold cross validation average accuracy: 0.965
-
+    
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -4610,22 +4610,22 @@ lr_run(lr, X_sel_train, y_sel_train, X_sel_test, y_sel_test)
     Iteration  8 | Accuracy: 0.97
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.96
-
+    
     Accuracy on test: 0.966
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.96      1.00      0.98      3435
                1       0.98      0.87      0.92      1065
-
+    
        micro avg       0.97      0.97      0.97      4500
        macro avg       0.97      0.93      0.95      4500
     weighted avg       0.97      0.97      0.97      4500
-
+    
     Confusion Matrix:
     [[3418   17]
      [ 134  931]]
-
+    
                                            Feature     Coef.
     0                                   intercept. -0.591944
     1                              attitude_normal -2.539354
@@ -4696,7 +4696,7 @@ lr_run(lr, os_data_X, os_data_y, X_smote_test, y_smote_test)
 ```
 
     10-fold cross validation average accuracy: 0.963
-
+    
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -4707,22 +4707,22 @@ lr_run(lr, os_data_X, os_data_y, X_smote_test, y_smote_test)
     Iteration  8 | Accuracy: 0.97
     Iteration  9 | Accuracy: 0.97
     Iteration 10 | Accuracy: 0.98
-
+    
     Accuracy on test: 0.957
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.98      0.97      0.97      3435
                1       0.90      0.92      0.91      1065
-
+    
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.94      0.95      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-
+    
     Confusion Matrix:
     [[3321  114]
      [  81  984]]
-
+    
                                            Feature      Coef.
     0                                   intercept.  17.976646
     1                                Work_accident  -1.539934
@@ -4833,7 +4833,7 @@ lr_run(lr, os_data_X_sel, os_data_y, X_smote_test_sel, y_smote_test)
 ```
 
     10-fold cross validation average accuracy: 0.856
-
+    
     Iteration  1 | Accuracy: 0.81
     Iteration  2 | Accuracy: 0.81
     Iteration  3 | Accuracy: 0.80
@@ -4844,22 +4844,22 @@ lr_run(lr, os_data_X_sel, os_data_y, X_smote_test_sel, y_smote_test)
     Iteration  8 | Accuracy: 0.94
     Iteration  9 | Accuracy: 0.94
     Iteration 10 | Accuracy: 0.95
-
+    
     Accuracy on test: 0.795
-
+    
                   precision    recall  f1-score   support
-
+    
                0       0.98      0.74      0.85      3435
                1       0.54      0.96      0.69      1065
-
+    
        micro avg       0.79      0.79      0.79      4500
        macro avg       0.76      0.85      0.77      4500
     weighted avg       0.88      0.79      0.81      4500
-
+    
     Confusion Matrix:
     [[2558  877]
      [  47 1018]]
-
+    
                                     Feature     Coef.
     0                            intercept.  1.560786
     1                         department_IT -0.674815
