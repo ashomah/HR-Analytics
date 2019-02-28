@@ -101,15 +101,6 @@ The main observation regarding the number of projects is that employees with onl
 
 No strong correlation appears in the dataset. However, it is possible to see clear groups when looking at the relationships of pairs of variables: Number of Projects vs Average Monthly Hours, Number of Projects vs Last Evaluation, Last Evaluation vs Average Monthly Hours, Last Evaluation vs Satisfaction.
 
-<table border='0'>
-<tr>
-<td bgcolor=white>![png](/assets/images/output_68_0.png)
-<td bgcolor=white>![png](/assets/images/output_72_0.png)
-<tr>
-<td bgcolor=white>![png](/assets/images/output_76_0.png)
-<td bgcolor=white>![png](/assets/images/output_80_0.png)
-</table>
-
 |![png](/assets/images/output_68_0.png)|![png](/assets/images/output_72_0.png)|
 |-|-|
 |![png](/assets/images/output_76_0.png)|![png](/assets/images/output_80_0.png)|
@@ -143,13 +134,14 @@ In order to improve the model results, a set of features will be created and mod
 #### 1.	Bin Satisfaction Level
 Based on the EDA, the Satisfactory Level is binned and one hot encoded in 6 bins: `(0.00, 0.11]`, `(0.11, 0.35]` , `(0.35, 0.46]` , `(0.46, 0.71]` , `(0.71, 0.92]` , `(0.92, 1.00]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.914. The feature is accepted.
 
-<table border='0'>
+<table>
 <tr>
-<td bgcolor=white>![png](/assets/images/output_43_0.png)
-<td bgcolor=white>![png](/assets/images/output_132_0.png)
+<td>![png](/assets/images/output_43_0.png)
+<td>![png](/assets/images/output_132_0.png)
 </table>
 
 *<p align='center'> Figure 4: Satisfaction Level Bar Plot, Before and After Binning </p>*
+
 
 #### 2.	Bin Last Evaluation
 Based on the EDA, the Last Evaluation is binned and one hot encoded in 4 bins: `(0.00, 0.44]`, `(0.44, 0.57]` , `(0.57, 0.76]` , `(0.76, 1.00]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.936. The feature is accepted.
