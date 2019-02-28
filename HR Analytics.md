@@ -78,7 +78,7 @@ The dataset consists in 14,999 rows and 10 columns. Each row represents an emplo
 <td bgcolor='white' style='text-align:justify'>Salary level of the employee: Low, Medium, High.
 </table>
 
-<p align="center"> *Figure 1: Variables of the HR Analytics Dataset* </p>
+<p align="center"><i> Figure 1: Variables of the HR Analytics Dataset* </i></p>
 
 #### 2.	Key Findings
 The objective of this study is to build a model to predict the value of the variable `left`, based on the other variables available. A first inspection reveals that 23.8% of the employee listed in the dataset have left the company. The dataset is not balanced, which might introduce some bias in the predictive model. The Synthetic Minority Oversampling Technique (SMOTE) has been used at the end of the study to compare the model with another one developed from an over-sampled dataset.
