@@ -144,10 +144,16 @@ Based on the EDA, the Satisfactory Level is binned and one hot encoded in 6 bins
 #### 2.	Bin Last Evaluation
 Based on the EDA, the Last Evaluation is binned and one hot encoded in 4 bins: `(0.00, 0.44]`, `(0.44, 0.57]` , `(0.57, 0.76]` , `(0.76, 1.00]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.936. The feature is accepted.
 
-<table border='0'>
+<table>
 <tr>
 <td bgcolor=white>![png](/assets/images/output_47_0.png)
 <td bgcolor=white>![png](/assets/images/output_138_0.png)
+</table>
+
+<table>
+<tr>
+<td bgcolor=white><img src='/assets/images/output_47_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_138_0.png'/>
 </table>
 
 *<p align='center'> Figure 5: Last Evaluation Bar Plot, Before and After Binning </p>*
