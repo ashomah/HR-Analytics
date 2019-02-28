@@ -78,7 +78,7 @@ The dataset consists in 14,999 rows and 10 columns. Each row represents an emplo
 <td bgcolor='white' style='text-align:justify'>Salary level of the employee: Low, Medium, High.
 </table>
 
-<p align="center"><i> Figure 1: Variables of the HR Analytics Dataset* </i></p>
+*<p align="center"> Figure 1: Variables of the HR Analytics Dataset </p>*
 
 #### 2.	Key Findings
 The objective of this study is to build a model to predict the value of the variable `left`, based on the other variables available. A first inspection reveals that 23.8% of the employee listed in the dataset have left the company. The dataset is not balanced, which might introduce some bias in the predictive model. The Synthetic Minority Oversampling Technique (SMOTE) has been used at the end of the study to compare the model with another one developed from an over-sampled dataset.
@@ -110,7 +110,11 @@ No strong correlation appears in the dataset. However, it is possible to see cle
 <td bgcolor=white>![png](/assets/images/output_80_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 2: Bar Plots of interesting pairs of variables, highlighting possible groups* </font></p>
+|![png](/assets/images/output_68_0.png)|![png](/assets/images/output_72_0.png)|
+|-|-|
+|![png](/assets/images/output_76_0.png)|![png](/assets/images/output_80_0.png)|
+
+*<p align='center'> Figure 2: Bar Plots of interesting pairs of variables, highlighting possible groups </p>*
 
 ### B.	Encoding, Scaling and Skewness
 For the model to proceed with the data efficiently, the categorical variables `salary` and `department` have been encoded. As the values of `salary` have an order, they have been encoded into integers within the same variable. For `department`, as the values have no specific order, they have been encoded into individual variables with boolean values. Thus, the dataset has been transformed from 10 variables to 19 variables. Numerical variables `average_monthly_hours`, `last_evaluation` and `satisfaction_level` are scaled between 0 and 1 to remove any influence of their difference in value ranges on the model. They have also been checked for skewness, without a real change on their shape.
@@ -125,7 +129,7 @@ A logistic regression algorithm will be used to develop this classification mode
 
 <p align='center'><font color='red'> __*FIGURE TO ADD*__ </font></p>
 
-<p align='center'><font color='grey'> *Figure 3: Baseline Results* </font></p>
+*<p align='center'> Figure 3: Baseline Results </p>*
 
 </br>
 
@@ -145,7 +149,7 @@ Based on the EDA, the Satisfactory Level is binned and one hot encoded in 6 bins
 <td bgcolor=white>![png](/assets/images/output_132_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 4: Satisfaction Level Bar Plot, Before and After Binning* </font></p>
+*<p align='center'> Figure 4: Satisfaction Level Bar Plot, Before and After Binning </p>*
 
 #### 2.	Bin Last Evaluation
 Based on the EDA, the Last Evaluation is binned and one hot encoded in 4 bins: `(0.00, 0.44]`, `(0.44, 0.57]` , `(0.57, 0.76]` , `(0.76, 1.00]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.936. The feature is accepted.
@@ -156,7 +160,7 @@ Based on the EDA, the Last Evaluation is binned and one hot encoded in 4 bins: `
 <td bgcolor=white>![png](/assets/images/output_138_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 5: Last Evaluation Bar Plot, Before and After Binning* </font></p>
+*<p align='center'> Figure 5: Last Evaluation Bar Plot, Before and After Binning </p>*
 
 #### 3.	Bin Average Monthly Hours
 Based on the EDA, the Average Monthly Hours is binned and one hot encoded in 7 bins: `(0, 125]`, `(125, 131]` , `(131, 161]` , `(161, 216]` , `(216, 274]` , `(274, 287]` , `(287, 310]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.945. The feature is accepted.
@@ -167,7 +171,7 @@ Based on the EDA, the Average Monthly Hours is binned and one hot encoded in 7 b
 <td bgcolor=white>![png](/assets/images/output_144_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 6: Average Monthly Hours Bar Plot, Before and After Binning* </font></p>
+*<p align='center'> Figure 6: Average Monthly Hours Bar Plot, Before and After Binning </p>*
 
 #### 4.	Categorize Number of Projects
 Based on the EDA, the Number of Projects can be categorized into 4 categories: `too low`, `normal`, `too high`, `extreme`. The new feature is then one hot encoded. The step increases the accuracy of the model to 0.950. The feature is accepted.
@@ -184,7 +188,7 @@ Based on the EDA, the employees can be cluster by Workload, based on the Number 
 <td bgcolor=white>![png](/assets/images/output_162_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 7: Number of Projects by Average Monthly Hours Scatter Plot, Before and After Clustering* </font></p>
+*<p align='center'> Figure 7: Number of Projects by Average Monthly Hours Scatter Plot, Before and After Clustering </p>*
 
 #### 7.	Cluster by Number of Projects and Last Evaluation
 Based on the EDA, the employees can be cluster by Project Performance, based on the Number of Projects and Last Evaluation, into 4 categories: `very low`, `low`, `normal`, `high`. The new feature is then one hot encoded. The step decreases the accuracy of the model to 0.958, but the 10-fold cross validation average accuracy increases from 0.958 to 0.960. The feature is kept, even if it is not clearly defined if it has an impact on the model accuracy. The Feature Selection phase might later clarify its importance.
@@ -195,7 +199,7 @@ Based on the EDA, the employees can be cluster by Project Performance, based on 
 <td bgcolor=white>![png](/assets/images/output_168_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 8: Number of Projects by Last Evaluation Scatter Plot, Before and After Clustering* </font></p>
+*<p align='center'> Figure 8: Number of Projects by Last Evaluation Scatter Plot, Before and After Clustering </p>*
 
 #### 8.	Cluster by Last Evaluation and Average Monthly Hours
 Based on the EDA, the employees can be clustered by Efficiency, based on the Last Evaluation and the Average Monthly Hours, into 4 categories: `very low`, `low`, `normal`, `high`. The new feature is then one hot encoded. The step increases the accuracy of the model to 0.960. The feature is accepted.
@@ -206,7 +210,7 @@ Based on the EDA, the employees can be clustered by Efficiency, based on the Las
 <td bgcolor=white>![png](/assets/images/output_174_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 9: Last Evaluation by Average Monthly Hours Scatter Plot, Before and After Clustering* </font></p>
+*<p align='center'> Figure 9: Last Evaluation by Average Monthly Hours Scatter Plot, Before and After Clustering </p>*
 
 #### 9.	Cluster by Last Evaluation and Satisfaction Level
 Based on the EDA, the employees can be clustered by Attitude, based on the Last Evaluation and the Satisfaction Level, into 7 categories: `very unhappy`, `unhappy`, `low performance`, `unhappy and low performance`, `normal`, `happy and high performance`, `very happy`. The new feature is then one hot encoded. The step increases the accuracy of the model to 0.964. The feature is accepted.
@@ -217,7 +221,7 @@ Based on the EDA, the employees can be clustered by Attitude, based on the Last 
 <td bgcolor=white>![png](/assets/images/output_180_0.png)
 </table>
 
-<p align='center'><font color='grey'> *Figure 10: Last Evaluation by Satisfaction Level Scatter Plot, Before and After Clustering* </font></p>
+*<p align='center'> Figure 10: Last Evaluation by Satisfaction Level Scatter Plot, Before and After Clustering </p>*
 
 ### C.	Feature Selection
 The dataset resulting from the Feature Engineering phase contains 58 features, with a model reaching the accuracy of 0.964. The Feature Selection phase aims to reduce the number of variables used by the model. The Recursive Feature Elimination (RFE) method is used to select the most relevant features for the model. It returns a list of 15 features which should be sufficient to our model.
@@ -229,7 +233,7 @@ The dataset resulting from the Feature Engineering phase contains 58 features, w
 
 <p align='center'><font color='red'> __*FIGURE TO ADD*__ </font></p>
 
-<p align='center'><font color='grey'> *Figure 11: Final Model Results* </font></p>
+*<p align='center'> Figure 11: Final Model Results </p>*
 
 Analyzing the 15 selected features and their coefficients will help understanding the underlying reasons for an employee to want to stay or to leave the company.
 
@@ -308,7 +312,7 @@ Analyzing the 15 selected features and their coefficients will help understandin
 <td bgcolor='white'>
 </table>
 
-<p align='center'><font color='grey'> *Figure 12: Selected features and corresponding model coefficients* </font></p>
+*<p align='center'> Figure 12: Selected features and corresponding model coefficients </p>*
 
 </br>
 
