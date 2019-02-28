@@ -120,7 +120,11 @@ The dataset will be split randomly into Train and Test sets, with ratio 70|30. T
 ## BASELINE
 A logistic regression algorithm will be used to develop this classification model. The baseline results of the model return an accuracy of 0.797, which is acceptable. However, the results regarding employees who left the company - our main objective - aren’t so satisfactory, as they present a very low recall of 0.34, which means that only 34% of the employees who left the company were detected. These results should improve significantly after the Feature Engineering phase for the model to be satisfactory.
 
-<p align='center'><font color='red'> __*FIGURE TO ADD*__ </font></p>
+<table>
+<tr>
+<td bgcolor=white><img src='/assets/images/results_1.png'/>
+<td bgcolor=white><img src='/assets/images/output_119_0.png'/>
+</table>
 
 *<p align='center'> Figure 3: Baseline Results </p>*
 
@@ -225,7 +229,11 @@ The dataset resulting from the Feature Engineering phase contains 58 features, w
 ## FINAL METRIC
 **The final model is tested with the 15 selected features and returns the accuracy of 0.966.** The recall for employees who left the company now reaches 87%, which will allow the management to better predict which employees have a high probability to leave.
 
-<p align='center'><font color='red'> __*FIGURE TO ADD*__ </font></p>
+<table>
+<tr>
+<td bgcolor=white><img src='/assets/images/results_2.png'/>
+<td bgcolor=white><img src='/assets/images/output_196_0.png'/>
+</table>
 
 *<p align='center'> Figure 11: Final Model Results </p>*
 
