@@ -231,8 +231,8 @@ The dataset resulting from the Feature Engineering phase contains 58 features, w
 
 <table>
 <tr>
-<td bgcolor=white width='55%'><img src='/assets/images/results_2.png'/>
-<td bgcolor=white width='45%'><img src='/assets/images/output_196_0.png'/>
+<td bgcolor=white width='60%'><img src='/assets/images/results_2.png'/>
+<td bgcolor=white width='40%'><img src='/assets/images/output_196_0.png'/>
 </table>
 
 *<p align='center'> Figure 11: Final Model Results </p>*
