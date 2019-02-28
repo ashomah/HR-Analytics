@@ -101,9 +101,11 @@ The main observation regarding the number of projects is that employees with onl
 
 No strong correlation appears in the dataset. However, it is possible to see clear groups when looking at the relationships of pairs of variables: Number of Projects vs Average Monthly Hours, Number of Projects vs Last Evaluation, Last Evaluation vs Average Monthly Hours, Last Evaluation vs Satisfaction.
 
-|![png](/assets/images/output_68_0.png)|![png](/assets/images/output_72_0.png)|
-|-|-|
-|![png](/assets/images/output_76_0.png)|![png](/assets/images/output_80_0.png)|
+<table>
+<tr>
+<td bgcolor=white><img src='/assets/images/output_72_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_80_0.png'/>
+</table>
 
 *<p align='center'> Figure 2: Bar Plots of interesting pairs of variables, highlighting possible groups </p>*
 
@@ -134,21 +136,17 @@ In order to improve the model results, a set of features will be created and mod
 #### 1.	Bin Satisfaction Level
 Based on the EDA, the Satisfactory Level is binned and one hot encoded in 6 bins: `(0.00, 0.11]`, `(0.11, 0.35]` , `(0.35, 0.46]` , `(0.46, 0.71]` , `(0.71, 0.92]` , `(0.92, 1.00]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.914. The feature is accepted.
 
-|![png](/assets/images/output_43_0.png)|![png](/assets/images/output_132_0.png)|
-|:-:|:-:|
-||||
+<table>
+<tr>
+<td bgcolor=white><img src='/assets/images/output_43_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_132_0.png'/>
+</table>
 
 *<p align='center'> Figure 4: Satisfaction Level Bar Plot, Before and After Binning </p>*
 
 
 #### 2.	Bin Last Evaluation
 Based on the EDA, the Last Evaluation is binned and one hot encoded in 4 bins: `(0.00, 0.44]`, `(0.44, 0.57]` , `(0.57, 0.76]` , `(0.76, 1.00]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.936. The feature is accepted.
-
-<table>
-<tr>
-<td bgcolor=white>![png](/assets/images/output_47_0.png)
-<td bgcolor=white>![png](/assets/images/output_138_0.png)
-</table>
 
 <table>
 <tr>
@@ -163,8 +161,8 @@ Based on the EDA, the Average Monthly Hours is binned and one hot encoded in 7 b
 
 <table border='0'>
 <tr>
-<td bgcolor=white>![png](/assets/images/output_55_0.png)
-<td bgcolor=white>![png](/assets/images/output_144_0.png)
+<td bgcolor=white><img src='/assets/images/output_55_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_144_0.png'/>
 </table>
 
 *<p align='center'> Figure 6: Average Monthly Hours Bar Plot, Before and After Binning </p>*
@@ -180,8 +178,8 @@ Based on the EDA, the employees can be cluster by Workload, based on the Number 
 
 <table border='0'>
 <tr>
-<td bgcolor=white>![png](/assets/images/output_69_0.png)
-<td bgcolor=white>![png](/assets/images/output_162_0.png)
+<td bgcolor=white><img src='/assets/images/output_69_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_162_0.png'/>
 </table>
 
 *<p align='center'> Figure 7: Number of Projects by Average Monthly Hours Scatter Plot, Before and After Clustering </p>*
@@ -191,8 +189,8 @@ Based on the EDA, the employees can be cluster by Project Performance, based on 
 
 <table border='0'>
 <tr>
-<td bgcolor=white>![png](/assets/images/output_73_0.png)
-<td bgcolor=white>![png](/assets/images/output_168_0.png)
+<td bgcolor=white><img src='/assets/images/output_73_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_168_0.png'/>
 </table>
 
 *<p align='center'> Figure 8: Number of Projects by Last Evaluation Scatter Plot, Before and After Clustering </p>*
@@ -202,8 +200,8 @@ Based on the EDA, the employees can be clustered by Efficiency, based on the Las
 
 <table border='0'>
 <tr>
-<td bgcolor=white>![png](/assets/images/output_77_0.png)
-<td bgcolor=white>![png](/assets/images/output_174_0.png)
+<td bgcolor=white><img src='/assets/images/output_77_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_174_0.png'/>
 </table>
 
 *<p align='center'> Figure 9: Last Evaluation by Average Monthly Hours Scatter Plot, Before and After Clustering </p>*
@@ -213,8 +211,8 @@ Based on the EDA, the employees can be clustered by Attitude, based on the Last 
 
 <table border='0'>
 <tr>
-<td bgcolor=white>![png](/assets/images/output_81_0.png)
-<td bgcolor=white>![png](/assets/images/output_180_0.png)
+<td bgcolor=white><img src='/assets/images/output_81_0.png'/>
+<td bgcolor=white><img src='/assets/images/output_180_0.png'/>
 </table>
 
 *<p align='center'> Figure 10: Last Evaluation by Satisfaction Level Scatter Plot, Before and After Clustering </p>*
