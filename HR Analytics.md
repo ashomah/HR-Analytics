@@ -134,11 +134,9 @@ In order to improve the model results, a set of features will be created and mod
 #### 1.	Bin Satisfaction Level
 Based on the EDA, the Satisfactory Level is binned and one hot encoded in 6 bins: `(0.00, 0.11]`, `(0.11, 0.35]` , `(0.35, 0.46]` , `(0.46, 0.71]` , `(0.71, 0.92]` , `(0.92, 1.00]`. The new feature is then one hot encoded. This step increases the accuracy of the model to 0.914. The feature is accepted.
 
-<table>
-<tr>
-<td>![png](/assets/images/output_43_0.png)
-<td>![png](/assets/images/output_132_0.png)
-</table>
+|![png](/assets/images/output_43_0.png)|![png](/assets/images/output_132_0.png)|
+|:-:|:-:|
+||||
 
 *<p align='center'> Figure 4: Satisfaction Level Bar Plot, Before and After Binning </p>*
 
