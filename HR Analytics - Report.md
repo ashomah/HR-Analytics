@@ -1,5 +1,7 @@
-# HR ANALYTICS REPORT
-Ashley O'Mahony | [ashleyomahony.com](ashleyomahony.com) | February 2019
+# HR Analytics
+Ashley O'Mahony | [ashleyomahony.com](http://ashleyomahony.com) | February 2019
+
+***
 
 </br>
 
@@ -103,7 +105,10 @@ No strong correlation appears in the dataset. However, it is possible to see cle
 
 <table>
 <tr>
+<td bgcolor=white><img src='/assets/images/output_68_0.png'/>
 <td bgcolor=white><img src='/assets/images/output_72_0.png'/>
+<tr>
+<td bgcolor=white><img src='/assets/images/output_76_0.png'/>
 <td bgcolor=white><img src='/assets/images/output_80_0.png'/>
 </table>
 
@@ -222,22 +227,22 @@ Based on the EDA, the employees can be clustered by Attitude, based on the Last 
 *<p align='center'> Figure 10: Last Evaluation by Satisfaction Level Scatter Plot, Before and After Clustering </p>*
 
 ### C.	Feature Selection
-The dataset resulting from the Feature Engineering phase contains 58 features, with a model reaching the accuracy of 0.964. The Feature Selection phase aims to reduce the number of variables used by the model. The Recursive Feature Elimination (RFE) method is used to select the most relevant features for the model. It returns a list of 15 features which should be sufficient to our model.
+The dataset resulting from the Feature Engineering phase contains 58 features, with a model reaching the accuracy of 0.964. The Feature Selection phase aims to reduce the number of variables used by the model. The Recursive Feature Elimination (RFE) method is used to select the most relevant features for the model. It returns a list of 14 features which should be sufficient to our model.
 
 </br>
 
 ## FINAL METRIC
-**The final model is tested with the 15 selected features and returns the accuracy of 0.966.** The recall for employees who left the company now reaches 87%, which will allow the management to better predict which employees have a high probability to leave.
+**The final model is tested with the 14 selected features and returns the accuracy of 0.967.** The recall for employees who left the company now reaches 88%, which will allow the management to better predict which employees have a high probability to leave.
 
 <table>
 <tr>
 <td bgcolor=white width='60%'><img src='/assets/images/results_2.png'/>
-<td bgcolor=white width='40%'><img src='/assets/images/output_196_0.png'/>
+<td bgcolor=white width='40%'><img src='/assets/images/output_201_0.png'/>
 </table>
 
 *<p align='center'> Figure 11: Final Model Results </p>*
 
-Analyzing the 15 selected features and their coefficients will help understanding the underlying reasons for an employee to want to stay or to leave the company.
+Analyzing the 14 selected features and their coefficients will help understanding the underlying reasons for an employee to want to stay or to leave the company.
 
 <table style='text-align:center'>
 <th colspan='3' bgcolor='#82e0aa' style='text-align:center;color:white'>Features reducing the probability of departure
@@ -245,70 +250,70 @@ Analyzing the 15 selected features and their coefficients will help understandin
 <tr>
 <td bgcolor='white'>Attitude
 <td bgcolor='white'>Normal
-<td bgcolor='white'>-2.539354
-<td bgcolor='white'>Attitude
-<td bgcolor='white'>Unhappy Low Performance
-<td bgcolor='white'>1.774068
-<tr>
-<td bgcolor='white'>Attitude
-<td bgcolor='white'>Unhappy
-<td bgcolor='white'>-2.014794
+<td bgcolor='white'>-2.936478
 <td bgcolor='white'>Attitude
 <td bgcolor='white'>Very Unhappy
-<td bgcolor='white'>1.669274
+<td bgcolor='white'>2.582233
 <tr>
 <td bgcolor='white'>Attitude
 <td bgcolor='white'>Very Happy
-<td bgcolor='white'>-2.282289
+<td bgcolor='white'>-2.423485
+<td bgcolor='white'>
+<td bgcolor='white'>
+<td bgcolor='white'>
+<tr>
+<td bgcolor='white'>Attitude
+<td bgcolor='white'>Unhappy
+<td bgcolor='white'>-2.295986
 <td bgcolor='white'>
 <td bgcolor='white'>
 <td bgcolor='white'>
 <tr>
 <td bgcolor='white'>Satisfaction
 <td bgcolor='white'>(0.92, 1.00]
-<td bgcolor='white'>-2.298017
+<td bgcolor='white'>-2.448987
 <td bgcolor='white'>Satisfaction
 <td bgcolor='white'>(0.00, 0.11]
-<td bgcolor='white'>2.669274
+<td bgcolor='white'>2.582233
 <tr>
 <td bgcolor='white'>Workload
 <td bgcolor='white'>Normal
-<td bgcolor='white'>-2.076743
+<td bgcolor='white'>-2.183617
 <td bgcolor='white'>Workload
 <td bgcolor='white'>Extreme
-<td bgcolor='white'>2.179019
+<td bgcolor='white'>2.245120
 <tr>
 <td bgcolor='white'>Efficiency
 <td bgcolor='white'>Very Low
-<td bgcolor='white'>-4.374203
+<td bgcolor='white'>-4.182167
 <td bgcolor='white'>Efficiency
 <td bgcolor='white'>Low
-<td bgcolor='white'>2.247488
+<td bgcolor='white'>3.295257
 <tr>
 <td bgcolor='white'>Time Spent
 <td bgcolor='white'>No Departure
-<td bgcolor='white'>-1.945288
+<td bgcolor='white'>-2.016273
 <td bgcolor='white'>Time Spent
 <td bgcolor='white'>Very High Departure
-<td bgcolor='white'>2.473079
+<td bgcolor='white'>2.403233
 <tr>
 <td bgcolor='white'>
 <td bgcolor='white'>
 <td bgcolor='white'>
 <td bgcolor='white'>Av. Monthly Hours
 <td bgcolor='white'>(287, 310]
-<td bgcolor='white'>2.179019
+<td bgcolor='white'>2.245120
 <tr>
 <td bgcolor='white'>
 <td bgcolor='white'>
 <td bgcolor='white'>
 <td bgcolor='white'>Number Project
 <td bgcolor='white'>Extreme
-<td bgcolor='white'>3.922200
+<td bgcolor='white'>3.987229
 <tr>
 <td bgcolor='white'>Intercept.
 <td bgcolor='white'>
-<td bgcolor='white'>-0.591944
+<td bgcolor='white'>-0.375952
 <td bgcolor='white'>
 <td bgcolor='white'>
 <td bgcolor='white'>
@@ -318,5 +323,19 @@ Analyzing the 15 selected features and their coefficients will help understandin
 
 </br>
 
-## CONCLUSION
+## CONCLUSION  
 This model will allow the company to calculate the probability of an employee to leave the company and to act on key-factors to avoid departures. The satisfaction of employees and the amount of workload they have to bear seem to be important causes of withdrawals. A particular attention on the work-life balance would be crucial to improve the turnover rate.
+
+</br>
+
+###### NOTE ON THE EXTREME ACCURACY  
+
+*The high accuracy is driven by the binned features tailored to the dataset. If they work really well for this data, it might not be the case for another dataset. The features should instead be set using standard binning approach, which wouldn't fit as well the data but which would be adaptable to any dataset. That solution would be recommended if the model has to be run in production.*
+
+</br>
+
+***
+
+###### *Ashley O'Mahony | [ashleyomahony.com](http://ashleyomahony.com) | March 2019*
+
+***

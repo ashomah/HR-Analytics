@@ -1,7 +1,7 @@
 
 # HR Analytics
 
-Ashley O'Mahony | [ashleyomahony.com](http://ashleyomahony.com) | 17 Feb 2019  
+Ashley O'Mahony | [ashleyomahony.com](http://ashleyomahony.com) | February 2019  
 
 ***
 
@@ -15,7 +15,7 @@ All the files of this project are saved in a [GitHub repository](https://github.
 
 ### Libraries
 
-This project uses a set of libraries for data manipulation, ploting and modelling.
+This project uses a set of libraries for data manipulation, plotting and modelling.
 
 
 ```python
@@ -40,7 +40,7 @@ from sklearn.metrics import confusion_matrix #Metrics
 from sklearn.metrics import accuracy_score #Metrics
 from sklearn.metrics import roc_auc_score, roc_curve #ROC
 from sklearn import model_selection #Cross Validation
-from sklearn.feature_selection import RFE #Feature Selection
+from sklearn.feature_selection import RFE, RFECV #Feature Selection
 ```
 
 ### Data Loading
@@ -50,7 +50,7 @@ The dataset is stored in the [GitHub repository](https://github.com/ashomah/HR-A
 
 ```python
 # Reading Dataset from GitHub repository
-hr = pd.read_csv('https://raw.githubusercontent.com/ashomah/HR-Analytics/master/turnover.csv')
+hr = pd.read_csv('https://raw.githubusercontent.com/ashomah/HR-Analytics/master/assets/data/turnover.csv')
 hr.head()
 ```
 
@@ -454,8 +454,8 @@ for i in sorted(categories.keys()):
 
     salary:
     ['low', 'medium', 'high']
-    
-    
+
+
     sales:
     ['sales', 'accounting', 'hr', 'technical', 'support', 'management', 'IT', 'product_mng', 'marketing', 'RandD']
 
@@ -472,8 +472,8 @@ The dataset contains 10 variables with no NAs:
 
 - `satisfaction_level`: numerical, decimal values between 0 and 1.  
   *Employee satisfaction level, from 0 to 1.*
-  
-  
+
+
 - `last_evaluation`: numerical, decimal values between 0 and 1.  
   *Employee last evaluation score, from 0 to 1.*
 
@@ -484,28 +484,28 @@ The dataset contains 10 variables with no NAs:
 
 - `average_montly_hours`: numerical, integer values between 96 and 310.  
   *Average monthly hours worked by the employee.*
-  
-  
+
+
 - `time_spend_company`: numerical, integer values between 2 and 10.  
   *Number of years spent in the company by the employee.*
-  
-  
+
+
 - `Work_acident`: encoded categorical, boolean.  
   *Flag indicating if the employee had a work accident.*
-  
-  
+
+
 - `left`: encoded categorical, boolean.  
   *Flag indicating if the employee has left the company. This is the __target variable__ of the study, the one to be modelled.*
-  
-  
+
+
 - `promotion_last_5years`: encoded categorical, boolean.  
   *Flag indicating if the employee has been promoting within the past 5 years.*
 
 
-- `department`: categorical, 10 values. 
+- `department`: categorical, 10 values.
   *Department of the employee: Sales, Accounting, HR, Technical, Support, Management, IT, Product Management, Marketing, R&D.*
-  
-  
+
+
 - `salary`: categorical, 3 values.  
   *Salary level of the employee: Low, Medium, High.*
 
@@ -628,7 +628,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_31_0.png)
+![png](assets/images/output_31_0.png)
 
 
 
@@ -642,7 +642,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_32_0.png)
+![png](assets/images/output_32_0.png)
 
 
 No strong correlation appears in the dataset. However:
@@ -668,8 +668,8 @@ print(hr.groupby('salary')['left'].mean())
     medium    42.976198
     high       8.247216
     Name: salary, dtype: float64
-    
-    
+
+
     Turnover Rate by Salary level
     salary
     high      0.066289
@@ -715,7 +715,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_39_0.png)
+![png](assets/images/output_39_0.png)
 
 
 Some observations can be inferred:
@@ -740,7 +740,7 @@ plt.tight_layout()
 
 
 
-![png](output_42_1.png)
+![png](assets/images/output_42_1.png)
 
 
 
@@ -754,7 +754,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_43_0.png)
+![png](assets/images/output_43_0.png)
 
 
 The Satisfaction Level shows 3 interesting areas:
@@ -777,7 +777,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_46_0.png)
+![png](assets/images/output_46_0.png)
 
 
 
@@ -791,7 +791,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_47_0.png)
+![png](assets/images/output_47_0.png)
 
 
 The Last Evaluation shows 2 interesting areas:
@@ -813,7 +813,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_50_0.png)
+![png](assets/images/output_50_0.png)
 
 
 
@@ -827,7 +827,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_51_0.png)
+![png](assets/images/output_51_0.png)
 
 
 The main observation regarding the number of projects is that employees with **only 2 or more than 5 projects** have a higher probability to leave the company.
@@ -845,7 +845,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_54_0.png)
+![png](assets/images/output_54_0.png)
 
 
 
@@ -859,7 +859,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_55_0.png)
+![png](assets/images/output_55_0.png)
 
 
 The Average Monthly Hours shows 5 interesting areas:
@@ -884,7 +884,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_58_0.png)
+![png](assets/images/output_58_0.png)
 
 
 It seems that employees with **3-6 years of services** are leaving the company.
@@ -902,7 +902,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_61_0.png)
+![png](assets/images/output_61_0.png)
 
 
 Employees with a work accident tend to stay in the company.
@@ -920,7 +920,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_64_0.png)
+![png](assets/images/output_64_0.png)
 
 
 
@@ -949,7 +949,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_68_0.png)
+![png](assets/images/output_68_0.png)
 
 
 
@@ -964,7 +964,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_69_0.png)
+![png](assets/images/output_69_0.png)
 
 
 It appears that:
@@ -987,7 +987,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_72_0.png)
+![png](assets/images/output_72_0.png)
 
 
 
@@ -1002,10 +1002,10 @@ plt.tight_layout()
 ```
 
 
-![png](output_73_0.png)
+![png](assets/images/output_73_0.png)
 
 
-Employees with **more than 4 projects** seem to have **higher evaluations** but leave the company. Employees with **2 projects and a low evaluation** leave the company. 
+Employees with **more than 4 projects** seem to have **higher evaluations** but leave the company. Employees with **2 projects and a low evaluation** leave the company.
 
 #### Last Evaluation vs Average Monthly Hours
 
@@ -1021,7 +1021,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_76_0.png)
+![png](assets/images/output_76_0.png)
 
 
 
@@ -1036,7 +1036,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_77_0.png)
+![png](assets/images/output_77_0.png)
 
 
 Employees with **high evaluation** and working **more than 217 hours** tend to leave the company. Employees with **evaluation around 0.5** and working **between 125 and 161 hours** tend to leave the company.
@@ -1055,7 +1055,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_80_0.png)
+![png](assets/images/output_80_0.png)
 
 
 
@@ -1070,7 +1070,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_81_0.png)
+![png](assets/images/output_81_0.png)
 
 
 Employees with **satisfaction level below 0.11** tend to leave the company. Employees with **satisfaction level between 0.35 and 0.46** and with **last evaluation between 0.44 and 0.57** tend to leave the company. Employees with **satisfaction level between 0.71 and 0.92** and with **last evaluation between 0.76 and 1** tend to leave the company.
@@ -1208,9 +1208,9 @@ def onehot_encode(df):
     numericals = df.get(numerical_features(df))
     new_df = numericals.copy()
     for categorical_column in categorical_features(df):
-        new_df = pd.concat([new_df, 
-                            pd.get_dummies(df[categorical_column], 
-                                           prefix=categorical_column)], 
+        new_df = pd.concat([new_df,
+                            pd.get_dummies(df[categorical_column],
+                                           prefix=categorical_column)],
                            axis=1)
     return new_df
 ```
@@ -1586,7 +1586,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_91_0.png)
+![png](assets/images/output_91_0.png)
 
 
 
@@ -1702,7 +1702,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_94_0.png)
+![png](assets/images/output_94_0.png)
 
 
 
@@ -1796,11 +1796,11 @@ The skewness of the scaled variables is then fixed.
 
 ```python
 def feature_skewness(df):
-    numeric_dtypes = ['int16', 'int32', 'int64', 
+    numeric_dtypes = ['int16', 'int32', 'int64',
                       'float16', 'float32', 'float64']
     numeric_features = []
     for i in df.columns:
-        if df[i].dtype in numeric_dtypes: 
+        if df[i].dtype in numeric_dtypes:
             numeric_features.append(i)
 
     feature_skew = df[numeric_features].apply(
@@ -1815,7 +1815,7 @@ def fix_skewness(df):
     feature_skew, numeric_features = feature_skewness(df)
     high_skew = feature_skew[feature_skew > 0.5]
     skew_index = high_skew.index
-    
+
     for i in skew_index:
         df[i] = boxcox1p(df[i], boxcox_normmax(df[i]+1))
 
@@ -1837,7 +1837,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_100_0.png)
+![png](assets/images/output_100_0.png)
 
 
 
@@ -2535,7 +2535,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_106_0.png)
+![png](assets/images/output_106_0.png)
 
 
 The dataset is now ready to go through the baseline and feature engineering phases.
@@ -2602,7 +2602,7 @@ def lr_run(model, X_train, y_train, X_test, y_test):
     coefficients.loc[-1] = ['intercept.', model.intercept_[0]]
     coefficients.index = coefficients.index + 1
     coefficients = coefficients.sort_index()
-    
+
     print('Accuracy on test: {:.3f}'.format(acc_test))
     print()
     print(classification_report(y_test, y_pred))
@@ -2618,20 +2618,20 @@ lr_run(lr, X_train, y_train, X_test, y_test)
 ```
 
     Accuracy on test: 0.797
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.82      0.94      0.88      3435
                1       0.63      0.34      0.44      1065
-    
+
        micro avg       0.80      0.80      0.80      4500
        macro avg       0.73      0.64      0.66      4500
     weighted avg       0.78      0.80      0.77      4500
-    
+
     Confusion Matrix:
     [[3220  215]
      [ 700  365]]
-    
+
                        Feature     Coef.
     0               intercept.  0.652320
     1       satisfaction_level -3.616897
@@ -2679,7 +2679,7 @@ plot_roc(lr, X_test, y_test)
 ```
 
 
-![png](output_119_0.png)
+![png](assets/images/output_119_0.png)
 
 
 ---
@@ -2709,7 +2709,7 @@ cv_acc(lr, X_train, y_train, 10, seed)
 ```
 
     10-fold cross validation average accuracy: 0.789
-    
+
     Iteration  1 | Accuracy: 0.79
     Iteration  2 | Accuracy: 0.77
     Iteration  3 | Accuracy: 0.78
@@ -2767,7 +2767,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_132_0.png)
+![png](assets/images/output_132_0.png)
 
 
 
@@ -2786,7 +2786,7 @@ lr_run(lr, X_fe_1_train, y_fe_1_train, X_fe_1_test, y_fe_1_test)
 ```
 
     10-fold cross validation average accuracy: 0.916
-    
+
     Iteration  1 | Accuracy: 0.92
     Iteration  2 | Accuracy: 0.92
     Iteration  3 | Accuracy: 0.90
@@ -2797,22 +2797,22 @@ lr_run(lr, X_fe_1_train, y_fe_1_train, X_fe_1_test, y_fe_1_test)
     Iteration  8 | Accuracy: 0.92
     Iteration  9 | Accuracy: 0.91
     Iteration 10 | Accuracy: 0.91
-    
+
     Accuracy on test: 0.914
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.94      0.95      0.94      3435
                1       0.83      0.79      0.81      1065
-    
+
        micro avg       0.91      0.91      0.91      4500
        macro avg       0.89      0.87      0.88      4500
     weighted avg       0.91      0.91      0.91      4500
-    
+
     Confusion Matrix:
     [[3266  169]
      [ 220  845]]
-    
+
                                     Feature     Coef.
     0                            intercept. -4.095534
     1                       last_evaluation  1.885761
@@ -2875,7 +2875,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_138_0.png)
+![png](assets/images/output_138_0.png)
 
 
 
@@ -2894,7 +2894,7 @@ lr_run(lr, X_fe_2_train, y_fe_2_train, X_fe_2_test, y_fe_2_test)
 ```
 
     10-fold cross validation average accuracy: 0.935
-    
+
     Iteration  1 | Accuracy: 0.93
     Iteration  2 | Accuracy: 0.93
     Iteration  3 | Accuracy: 0.93
@@ -2905,22 +2905,22 @@ lr_run(lr, X_fe_2_train, y_fe_2_train, X_fe_2_test, y_fe_2_test)
     Iteration  8 | Accuracy: 0.94
     Iteration  9 | Accuracy: 0.93
     Iteration 10 | Accuracy: 0.93
-    
+
     Accuracy on test: 0.936
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.95      0.97      0.96      3435
                1       0.88      0.84      0.86      1065
-    
+
        micro avg       0.94      0.94      0.94      4500
        macro avg       0.92      0.90      0.91      4500
     weighted avg       0.94      0.94      0.94      4500
-    
+
     Confusion Matrix:
     [[3315  120]
      [ 167  898]]
-    
+
                                     Feature     Coef.
     0                            intercept. -5.603085
     1                  average_montly_hours  2.193703
@@ -2989,7 +2989,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_144_0.png)
+![png](assets/images/output_144_0.png)
 
 
 
@@ -3008,7 +3008,7 @@ lr_run(lr, X_fe_3_train, y_fe_3_train, X_fe_3_test, y_fe_3_test)
 ```
 
     10-fold cross validation average accuracy: 0.944
-    
+
     Iteration  1 | Accuracy: 0.95
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.94
@@ -3019,22 +3019,22 @@ lr_run(lr, X_fe_3_train, y_fe_3_train, X_fe_3_test, y_fe_3_test)
     Iteration  8 | Accuracy: 0.95
     Iteration  9 | Accuracy: 0.94
     Iteration 10 | Accuracy: 0.93
-    
+
     Accuracy on test: 0.945
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.96      0.97      0.96      3435
                1       0.91      0.86      0.88      1065
-    
+
        micro avg       0.95      0.95      0.95      4500
        macro avg       0.93      0.92      0.92      4500
     weighted avg       0.94      0.95      0.94      4500
-    
+
     Confusion Matrix:
     [[3340   95]
      [ 151  914]]
-    
+
                                     Feature     Coef.
     0                            intercept. -4.893750
     1                        number_project  0.162189
@@ -3105,7 +3105,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_150_0.png)
+![png](assets/images/output_150_0.png)
 
 
 
@@ -3124,7 +3124,7 @@ lr_run(lr, X_fe_4_train, y_fe_4_train, X_fe_4_test, y_fe_4_test)
 ```
 
     10-fold cross validation average accuracy: 0.946
-    
+
     Iteration  1 | Accuracy: 0.94
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.94
@@ -3135,22 +3135,22 @@ lr_run(lr, X_fe_4_train, y_fe_4_train, X_fe_4_test, y_fe_4_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.94
     Iteration 10 | Accuracy: 0.94
-    
+
     Accuracy on test: 0.950
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.96      0.97      0.97      3435
                1       0.90      0.88      0.89      1065
-    
+
        micro avg       0.95      0.95      0.95      4500
        macro avg       0.93      0.93      0.93      4500
     weighted avg       0.95      0.95      0.95      4500
-    
+
     Confusion Matrix:
     [[3333  102]
      [ 125  940]]
-    
+
                                     Feature     Coef.
     0                            intercept. -2.841608
     1                    time_spend_company  0.507726
@@ -3224,7 +3224,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_156_0.png)
+![png](assets/images/output_156_0.png)
 
 
 
@@ -3243,7 +3243,7 @@ lr_run(lr, X_fe_5_train, y_fe_5_train, X_fe_5_test, y_fe_5_test)
 ```
 
     10-fold cross validation average accuracy: 0.956
-    
+
     Iteration  1 | Accuracy: 0.95
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.95
@@ -3254,22 +3254,22 @@ lr_run(lr, X_fe_5_train, y_fe_5_train, X_fe_5_test, y_fe_5_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-    
+
     Accuracy on test: 0.956
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.96      0.98      0.97      3435
                1       0.93      0.88      0.91      1065
-    
+
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-    
+
     Confusion Matrix:
     [[3362   73]
      [ 124  941]]
-    
+
                                            Feature     Coef.
     0                                   intercept. -1.288513
     1                                Work_accident -1.210856
@@ -3356,7 +3356,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_162_0.png)
+![png](assets/images/output_162_0.png)
 
 
 
@@ -3379,7 +3379,7 @@ lr_run(lr, X_fe_6_train, y_fe_6_train, X_fe_6_test, y_fe_6_test)
 ```
 
     10-fold cross validation average accuracy: 0.958
-    
+
     Iteration  1 | Accuracy: 0.95
     Iteration  2 | Accuracy: 0.94
     Iteration  3 | Accuracy: 0.95
@@ -3390,67 +3390,67 @@ lr_run(lr, X_fe_6_train, y_fe_6_train, X_fe_6_test, y_fe_6_test)
     Iteration  8 | Accuracy: 0.97
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-    
+
     Accuracy on test: 0.959
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.96      0.98      0.97      3435
                1       0.94      0.88      0.91      1065
-    
+
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-    
+
     Confusion Matrix:
     [[3377   58]
      [ 125  940]]
-    
+
                                            Feature     Coef.
-    0                                   intercept. -0.766902
+    0                                   intercept. -0.766901
     1                                Work_accident -1.173201
     2                        promotion_last_5years -0.439302
     3                                       salary -0.662271
-    4                                department_IT -0.297132
-    5                             department_RandD -0.447798
+    4                                department_IT -0.297131
+    5                             department_RandD -0.447797
     6                        department_accounting  0.000741
-    7                                department_hr  0.458776
+    7                                department_hr  0.458777
     8                        department_management -0.164455
-    9                         department_marketing  0.048458
+    9                         department_marketing  0.048457
     10                      department_product_mng -0.187570
     11                            department_sales  0.034650
-    12                          department_support  0.347781
+    12                          department_support  0.347782
     13                        department_technical  0.205697
     14                            workload_extreme  2.350234
     15                               workload_high  0.104323
-    16                                workload_low  1.471145
-    17                             workload_normal -1.650482
-    18                           workload_very low -2.276072
-    19       time_spend_company_cat_high departure  0.289187
+    16                                workload_low  1.471144
+    17                             workload_normal -1.650481
+    18                           workload_very low -2.276069
+    19       time_spend_company_cat_high departure  0.289188
     20        time_spend_company_cat_low departure -1.110152
-    21         time_spend_company_cat_no departure -1.839474
-    22  time_spend_company_cat_very high departure  2.659587
-    23                  number_project_cat_extreme  3.487823
-    24                   number_project_cat_normal -1.632122
-    25                 number_project_cat_too high -1.306443
-    26                  number_project_cat_too low -0.550110
-    27           average_montly_hours_bin_(0, 125] -2.276072
-    28         average_montly_hours_bin_(125, 131]  0.579145
-    29         average_montly_hours_bin_(131, 161]  0.135179
-    30         average_montly_hours_bin_(161, 216] -0.624238
-    31         average_montly_hours_bin_(216, 274] -0.014267
-    32         average_montly_hours_bin_(274, 287] -0.150833
-    33         average_montly_hours_bin_(287, 310]  2.350234
-    34         satisfaction_level_bin_(0.00, 0.11]  4.765913
-    35         satisfaction_level_bin_(0.11, 0.35] -1.400822
-    36         satisfaction_level_bin_(0.35, 0.46]  1.637668
-    37         satisfaction_level_bin_(0.46, 0.71] -1.633801
-    38         satisfaction_level_bin_(0.71, 0.92]  0.169114
-    39         satisfaction_level_bin_(0.92, 1.00] -3.538924
-    40            last_evaluation_bin_(0.00, 0.44] -2.541267
-    41            last_evaluation_bin_(0.44, 0.57]  1.163123
-    42            last_evaluation_bin_(0.57, 0.76] -0.196010
-    43            last_evaluation_bin_(0.76, 1.00]  1.573302
+    21         time_spend_company_cat_no departure -1.839473
+    22  time_spend_company_cat_very high departure  2.659588
+    23           average_montly_hours_bin_(0, 125] -2.276069
+    24         average_montly_hours_bin_(125, 131]  0.579145
+    25         average_montly_hours_bin_(131, 161]  0.135179
+    26         average_montly_hours_bin_(161, 216] -0.624238
+    27         average_montly_hours_bin_(216, 274] -0.014268
+    28         average_montly_hours_bin_(274, 287] -0.150833
+    29         average_montly_hours_bin_(287, 310]  2.350234
+    30            last_evaluation_bin_(0.00, 0.44] -2.541263
+    31            last_evaluation_bin_(0.44, 0.57]  1.163123
+    32            last_evaluation_bin_(0.57, 0.76] -0.196012
+    33            last_evaluation_bin_(0.76, 1.00]  1.573302
+    34                  number_project_cat_extreme  3.487829
+    35                   number_project_cat_normal -1.632124
+    36                 number_project_cat_too high -1.306443
+    37                  number_project_cat_too low -0.550112
+    38         satisfaction_level_bin_(0.00, 0.11]  4.765909
+    39         satisfaction_level_bin_(0.11, 0.35] -1.400822
+    40         satisfaction_level_bin_(0.35, 0.46]  1.637670
+    41         satisfaction_level_bin_(0.46, 0.71] -1.633800
+    42         satisfaction_level_bin_(0.71, 0.92]  0.169115
+    43         satisfaction_level_bin_(0.92, 1.00] -3.538921
 
 
 #### Cluster by Number of Projects and Last Evaluation
@@ -3494,7 +3494,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_168_0.png)
+![png](assets/images/output_168_0.png)
 
 
 
@@ -3517,7 +3517,7 @@ lr_run(lr, X_fe_7_train, y_fe_7_train, X_fe_7_test, y_fe_7_test)
 ```
 
     10-fold cross validation average accuracy: 0.960
-    
+
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -3528,22 +3528,22 @@ lr_run(lr, X_fe_7_train, y_fe_7_train, X_fe_7_test, y_fe_7_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-    
+
     Accuracy on test: 0.958
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.96      0.98      0.97      3435
                1       0.93      0.88      0.91      1065
-    
+
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-    
+
     Confusion Matrix:
     [[3368   67]
      [ 123  942]]
-    
+
                                            Feature     Coef.
     0                                   intercept. -0.304227
     1                                Work_accident -1.223252
@@ -3568,31 +3568,31 @@ lr_run(lr, X_fe_7_train, y_fe_7_train, X_fe_7_test, y_fe_7_test)
     20        time_spend_company_cat_low departure -1.065227
     21         time_spend_company_cat_no departure -1.923445
     22  time_spend_company_cat_very high departure  2.689379
-    23                  number_project_cat_extreme  3.644086
-    24                   number_project_cat_normal -1.391861
-    25                 number_project_cat_too high -1.002857
-    26                  number_project_cat_too low -1.248984
-    27           average_montly_hours_bin_(0, 125] -2.150941
-    28         average_montly_hours_bin_(125, 131]  0.310555
-    29         average_montly_hours_bin_(131, 161] -0.065836
-    30         average_montly_hours_bin_(161, 216] -0.782745
-    31         average_montly_hours_bin_(216, 274]  0.117264
-    32         average_montly_hours_bin_(274, 287]  0.166471
-    33         average_montly_hours_bin_(287, 310]  2.405614
-    34         satisfaction_level_bin_(0.00, 0.11]  4.679780
-    35         satisfaction_level_bin_(0.11, 0.35] -1.331063
-    36         satisfaction_level_bin_(0.35, 0.46]  1.205874
-    37         satisfaction_level_bin_(0.46, 0.71] -1.514709
-    38         satisfaction_level_bin_(0.71, 0.92]  0.241973
-    39         satisfaction_level_bin_(0.92, 1.00] -3.281472
-    40            last_evaluation_bin_(0.00, 0.44] -1.472612
-    41            last_evaluation_bin_(0.44, 0.57]  0.498097
-    42            last_evaluation_bin_(0.57, 0.76]  0.165295
-    43            last_evaluation_bin_(0.76, 1.00]  0.809603
-    44                    project_performance_high  0.246351
-    45                     project_performance_low  2.100090
-    46                  project_performance_normal -0.873446
-    47                project_performance_very low -1.472612
+    23           average_montly_hours_bin_(0, 125] -2.150941
+    24         average_montly_hours_bin_(125, 131]  0.310555
+    25         average_montly_hours_bin_(131, 161] -0.065836
+    26         average_montly_hours_bin_(161, 216] -0.782745
+    27         average_montly_hours_bin_(216, 274]  0.117264
+    28         average_montly_hours_bin_(274, 287]  0.166471
+    29         average_montly_hours_bin_(287, 310]  2.405614
+    30            last_evaluation_bin_(0.00, 0.44] -1.472612
+    31            last_evaluation_bin_(0.44, 0.57]  0.498097
+    32            last_evaluation_bin_(0.57, 0.76]  0.165295
+    33            last_evaluation_bin_(0.76, 1.00]  0.809603
+    34                    project_performance_high  0.246351
+    35                     project_performance_low  2.100090
+    36                  project_performance_normal -0.873446
+    37                project_performance_very low -1.472612
+    38                  number_project_cat_extreme  3.644086
+    39                   number_project_cat_normal -1.391861
+    40                 number_project_cat_too high -1.002857
+    41                  number_project_cat_too low -1.248984
+    42         satisfaction_level_bin_(0.00, 0.11]  4.679780
+    43         satisfaction_level_bin_(0.11, 0.35] -1.331063
+    44         satisfaction_level_bin_(0.35, 0.46]  1.205874
+    45         satisfaction_level_bin_(0.46, 0.71] -1.514709
+    46         satisfaction_level_bin_(0.71, 0.92]  0.241973
+    47         satisfaction_level_bin_(0.92, 1.00] -3.281472
 
 
 #### Cluster by Last Evaluation and Average Monthly Hours
@@ -3638,7 +3638,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_174_0.png)
+![png](assets/images/output_174_0.png)
 
 
 
@@ -3661,7 +3661,7 @@ lr_run(lr, X_fe_8_train, y_fe_8_train, X_fe_8_test, y_fe_8_test)
 ```
 
     10-fold cross validation average accuracy: 0.960
-    
+
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -3672,24 +3672,24 @@ lr_run(lr, X_fe_8_train, y_fe_8_train, X_fe_8_test, y_fe_8_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.95
-    
+
     Accuracy on test: 0.960
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.96      0.98      0.97      3435
                1       0.94      0.88      0.91      1065
-    
+
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.95      0.93      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-    
+
     Confusion Matrix:
     [[3377   58]
      [ 124  941]]
-    
+
                                            Feature     Coef.
-    0                                   intercept.  0.110312
+    0                                   intercept.  0.110311
     1                                Work_accident -1.234954
     2                        promotion_last_5years -0.581323
     3                                       salary -0.653274
@@ -3698,49 +3698,49 @@ lr_run(lr, X_fe_8_train, y_fe_8_train, X_fe_8_test, y_fe_8_test)
     6                        department_accounting -0.118532
     7                                department_hr  0.420489
     8                        department_management -0.156571
-    9                         department_marketing  0.097994
+    9                         department_marketing  0.097993
     10                      department_product_mng -0.141090
     11                            department_sales  0.034649
-    12                          department_support  0.373495
+    12                          department_support  0.373496
     13                        department_technical  0.253988
     14                            workload_extreme  2.378101
-    15                               workload_high -0.310824
-    16                                workload_low  0.498769
+    15                               workload_high -0.310825
+    16                                workload_low  0.498770
     17                             workload_normal -1.224138
     18                           workload_very low -1.341976
-    19                             efficiency_high  0.730402
-    20                              efficiency_low  1.642109
-    21                           efficiency_normal -0.284602
-    22                         efficiency_very low -2.087977
-    23       time_spend_company_cat_high departure  0.291585
-    24        time_spend_company_cat_low departure -1.079268
-    25         time_spend_company_cat_no departure -1.877955
-    26  time_spend_company_cat_very high departure  2.665570
-    27                  number_project_cat_extreme  3.511605
-    28                   number_project_cat_normal -1.541115
-    29                 number_project_cat_too high -1.025555
-    30                  number_project_cat_too low -0.945003
-    31           average_montly_hours_bin_(0, 125] -1.341976
-    32         average_montly_hours_bin_(125, 131]  0.122886
-    33         average_montly_hours_bin_(131, 161] -0.304675
-    34         average_montly_hours_bin_(161, 216] -0.571683
-    35         average_montly_hours_bin_(216, 274] -0.235870
-    36         average_montly_hours_bin_(274, 287] -0.046850
-    37         average_montly_hours_bin_(287, 310]  2.378101
-    38         satisfaction_level_bin_(0.00, 0.11]  4.547034
-    39         satisfaction_level_bin_(0.11, 0.35] -1.297088
-    40         satisfaction_level_bin_(0.35, 0.46]  1.129827
-    41         satisfaction_level_bin_(0.46, 0.71] -1.465960
-    42         satisfaction_level_bin_(0.71, 0.92]  0.271559
-    43         satisfaction_level_bin_(0.92, 1.00] -3.185440
-    44            last_evaluation_bin_(0.00, 0.44] -0.789941
-    45            last_evaluation_bin_(0.44, 0.57]  0.075586
-    46            last_evaluation_bin_(0.57, 0.76]  0.324766
-    47            last_evaluation_bin_(0.76, 1.00]  0.389521
-    48                    project_performance_high  0.179345
-    49                     project_performance_low  1.434834
-    50                  project_performance_normal -0.824305
-    51                project_performance_very low -0.789941
+    19       time_spend_company_cat_high departure  0.291586
+    20        time_spend_company_cat_low departure -1.079268
+    21         time_spend_company_cat_no departure -1.877955
+    22  time_spend_company_cat_very high departure  2.665570
+    23           average_montly_hours_bin_(0, 125] -1.341976
+    24         average_montly_hours_bin_(125, 131]  0.122886
+    25         average_montly_hours_bin_(131, 161] -0.304675
+    26         average_montly_hours_bin_(161, 216] -0.571684
+    27         average_montly_hours_bin_(216, 274] -0.235870
+    28         average_montly_hours_bin_(274, 287] -0.046850
+    29         average_montly_hours_bin_(287, 310]  2.378101
+    30            last_evaluation_bin_(0.00, 0.44] -0.789941
+    31            last_evaluation_bin_(0.44, 0.57]  0.075586
+    32            last_evaluation_bin_(0.57, 0.76]  0.324766
+    33            last_evaluation_bin_(0.76, 1.00]  0.389521
+    34                    project_performance_high  0.179345
+    35                     project_performance_low  1.434834
+    36                  project_performance_normal -0.824305
+    37                project_performance_very low -0.789941
+    38                  number_project_cat_extreme  3.511605
+    39                   number_project_cat_normal -1.541114
+    40                 number_project_cat_too high -1.025555
+    41                  number_project_cat_too low -0.945003
+    42         satisfaction_level_bin_(0.00, 0.11]  4.547035
+    43         satisfaction_level_bin_(0.11, 0.35] -1.297088
+    44         satisfaction_level_bin_(0.35, 0.46]  1.129828
+    45         satisfaction_level_bin_(0.46, 0.71] -1.465960
+    46         satisfaction_level_bin_(0.71, 0.92]  0.271559
+    47         satisfaction_level_bin_(0.92, 1.00] -3.185440
+    48                             efficiency_high  0.730403
+    49                              efficiency_low  1.642109
+    50                           efficiency_normal -0.284602
+    51                         efficiency_very low -2.087977
 
 
 #### Cluster by Last Evaluation and Satisfaction Level
@@ -3793,7 +3793,7 @@ plt.tight_layout()
 ```
 
 
-![png](output_180_0.png)
+![png](assets/images/output_180_0.png)
 
 
 
@@ -3816,7 +3816,7 @@ lr_run(lr, X_fe_9_train, y_fe_9_train, X_fe_9_test, y_fe_9_test)
 ```
 
     10-fold cross validation average accuracy: 0.964
-    
+
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -3827,29 +3827,29 @@ lr_run(lr, X_fe_9_train, y_fe_9_train, X_fe_9_test, y_fe_9_test)
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.96
-    
+
     Accuracy on test: 0.964
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.97      0.98      0.98      3435
                1       0.94      0.90      0.92      1065
-    
+
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.96      0.94      0.95      4500
     weighted avg       0.96      0.96      0.96      4500
-    
+
     Confusion Matrix:
     [[3379   56]
      [ 108  957]]
-    
+
                                            Feature     Coef.
     0                                   intercept.  0.155602
     1                                Work_accident -1.143174
     2                        promotion_last_5years -0.597843
     3                                       salary -0.652169
     4                                department_IT -0.355823
-    5                             department_RandD -0.441449
+    5                             department_RandD -0.441450
     6                        department_accounting -0.095917
     7                                department_hr  0.447624
     8                        department_management -0.163427
@@ -3863,46 +3863,46 @@ lr_run(lr, X_fe_9_train, y_fe_9_train, X_fe_9_test, y_fe_9_test)
     16                                workload_low  0.383963
     17                             workload_normal -1.056297
     18                           workload_very low -1.380807
-    19                             efficiency_high  0.631356
-    20                              efficiency_low  1.559049
-    21                           efficiency_normal -0.140877
-    22                         efficiency_very low -2.047439
-    23       time_spend_company_cat_high departure  0.258945
-    24        time_spend_company_cat_low departure -1.051914
-    25         time_spend_company_cat_no departure -1.793281
-    26  time_spend_company_cat_very high departure  2.588338
-    27                  number_project_cat_extreme  3.202322
-    28                   number_project_cat_normal -1.490338
-    29                 number_project_cat_too high -0.978540
-    30                  number_project_cat_too low -0.731354
-    31           average_montly_hours_bin_(0, 125] -1.380807
-    32         average_montly_hours_bin_(125, 131]  0.087262
-    33         average_montly_hours_bin_(131, 161] -0.283742
-    34         average_montly_hours_bin_(161, 216] -0.697097
-    35         average_montly_hours_bin_(216, 274] -0.167288
-    36         average_montly_hours_bin_(274, 287]  0.161469
-    37         average_montly_hours_bin_(287, 310]  2.282292
-    38         attitude_happy and high performance  0.807235
-    39                    attitude_low performance -0.693405
-    40                             attitude_normal -1.154903
-    41                            attitude_unhappy -1.048763
-    42        attitude_unhappy and low performance  1.378160
-    43                         attitude_very happy -1.938233
-    44                       attitude_very unhappy  2.651998
-    45         satisfaction_level_bin_(0.00, 0.11]  2.651998
-    46         satisfaction_level_bin_(0.11, 0.35] -0.522950
-    47         satisfaction_level_bin_(0.35, 0.46]  0.552467
-    48         satisfaction_level_bin_(0.46, 0.71] -0.530850
-    49         satisfaction_level_bin_(0.71, 0.92] -0.200445
-    50         satisfaction_level_bin_(0.92, 1.00] -1.948131
-    51            last_evaluation_bin_(0.00, 0.44] -0.693405
-    52            last_evaluation_bin_(0.44, 0.57]  0.121621
-    53            last_evaluation_bin_(0.57, 0.76]  0.748939
-    54            last_evaluation_bin_(0.76, 1.00] -0.175065
-    55                    project_performance_high  0.419734
-    56                     project_performance_low  0.855019
-    57                  project_performance_normal -0.579259
-    58                project_performance_very low -0.693405
+    19       time_spend_company_cat_high departure  0.258945
+    20        time_spend_company_cat_low departure -1.051914
+    21         time_spend_company_cat_no departure -1.793281
+    22  time_spend_company_cat_very high departure  2.588338
+    23           average_montly_hours_bin_(0, 125] -1.380807
+    24         average_montly_hours_bin_(125, 131]  0.087262
+    25         average_montly_hours_bin_(131, 161] -0.283742
+    26         average_montly_hours_bin_(161, 216] -0.697097
+    27         average_montly_hours_bin_(216, 274] -0.167288
+    28         average_montly_hours_bin_(274, 287]  0.161469
+    29         average_montly_hours_bin_(287, 310]  2.282292
+    30            last_evaluation_bin_(0.00, 0.44] -0.693405
+    31            last_evaluation_bin_(0.44, 0.57]  0.121621
+    32            last_evaluation_bin_(0.57, 0.76]  0.748939
+    33            last_evaluation_bin_(0.76, 1.00] -0.175065
+    34         attitude_happy and high performance  0.807235
+    35                    attitude_low performance -0.693405
+    36                             attitude_normal -1.154903
+    37                            attitude_unhappy -1.048762
+    38        attitude_unhappy and low performance  1.378160
+    39                         attitude_very happy -1.938233
+    40                       attitude_very unhappy  2.651998
+    41                    project_performance_high  0.419734
+    42                     project_performance_low  0.855019
+    43                  project_performance_normal -0.579259
+    44                project_performance_very low -0.693405
+    45                  number_project_cat_extreme  3.202322
+    46                   number_project_cat_normal -1.490338
+    47                 number_project_cat_too high -0.978540
+    48                  number_project_cat_too low -0.731354
+    49         satisfaction_level_bin_(0.00, 0.11]  2.651998
+    50         satisfaction_level_bin_(0.11, 0.35] -0.522950
+    51         satisfaction_level_bin_(0.35, 0.46]  0.552467
+    52         satisfaction_level_bin_(0.46, 0.71] -0.530850
+    53         satisfaction_level_bin_(0.71, 0.92] -0.200445
+    54         satisfaction_level_bin_(0.92, 1.00] -1.948131
+    55                             efficiency_high  0.631356
+    56                              efficiency_low  1.559049
+    57                           efficiency_normal -0.140877
+    58                         efficiency_very low -2.047439
 
 
 #### Removing Unbinned Variables and Encoding New Features
@@ -4102,38 +4102,6 @@ df_desc(hr_fe_encoded)
       <td>False</td>
     </tr>
     <tr>
-      <th>efficiency_high</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>efficiency_low</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>efficiency_normal</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>efficiency_very low</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
       <th>time_spend_company_cat_high departure</th>
       <td>uint8</td>
       <td>0</td>
@@ -4159,38 +4127,6 @@ df_desc(hr_fe_encoded)
     </tr>
     <tr>
       <th>time_spend_company_cat_very high departure</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>number_project_cat_extreme</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>number_project_cat_normal</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>number_project_cat_too high</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>number_project_cat_too low</th>
       <td>uint8</td>
       <td>0</td>
       <td>False</td>
@@ -4254,6 +4190,38 @@ df_desc(hr_fe_encoded)
       <td>False</td>
     </tr>
     <tr>
+      <th>last_evaluation_bin_(0.00, 0.44]</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>last_evaluation_bin_(0.44, 0.57]</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>last_evaluation_bin_(0.57, 0.76]</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>last_evaluation_bin_(0.76, 1.00]</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
       <th>attitude_happy and high performance</th>
       <td>uint8</td>
       <td>0</td>
@@ -4310,6 +4278,70 @@ df_desc(hr_fe_encoded)
       <td>False</td>
     </tr>
     <tr>
+      <th>project_performance_high</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>project_performance_low</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>project_performance_normal</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>project_performance_very low</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>number_project_cat_extreme</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>number_project_cat_normal</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>number_project_cat_too high</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>number_project_cat_too low</th>
+      <td>uint8</td>
+      <td>0</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
       <th>satisfaction_level_bin_(0.00, 0.11]</th>
       <td>uint8</td>
       <td>0</td>
@@ -4358,7 +4390,7 @@ df_desc(hr_fe_encoded)
       <td>False</td>
     </tr>
     <tr>
-      <th>last_evaluation_bin_(0.00, 0.44]</th>
+      <th>efficiency_high</th>
       <td>uint8</td>
       <td>0</td>
       <td>False</td>
@@ -4366,7 +4398,7 @@ df_desc(hr_fe_encoded)
       <td>False</td>
     </tr>
     <tr>
-      <th>last_evaluation_bin_(0.44, 0.57]</th>
+      <th>efficiency_low</th>
       <td>uint8</td>
       <td>0</td>
       <td>False</td>
@@ -4374,7 +4406,7 @@ df_desc(hr_fe_encoded)
       <td>False</td>
     </tr>
     <tr>
-      <th>last_evaluation_bin_(0.57, 0.76]</th>
+      <th>efficiency_normal</th>
       <td>uint8</td>
       <td>0</td>
       <td>False</td>
@@ -4382,39 +4414,7 @@ df_desc(hr_fe_encoded)
       <td>False</td>
     </tr>
     <tr>
-      <th>last_evaluation_bin_(0.76, 1.00]</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>project_performance_high</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>project_performance_low</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>project_performance_normal</th>
-      <td>uint8</td>
-      <td>0</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>project_performance_very low</th>
+      <th>efficiency_very low</th>
       <td>uint8</td>
       <td>0</td>
       <td>False</td>
@@ -4440,7 +4440,7 @@ lr_run(lr, X_fe_encoded_train, y_fe_encoded_train, X_fe_encoded_test, y_fe_encod
 ```
 
     10-fold cross validation average accuracy: 0.964
-    
+
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -4451,29 +4451,29 @@ lr_run(lr, X_fe_encoded_train, y_fe_encoded_train, X_fe_encoded_test, y_fe_encod
     Iteration  8 | Accuracy: 0.96
     Iteration  9 | Accuracy: 0.96
     Iteration 10 | Accuracy: 0.96
-    
+
     Accuracy on test: 0.964
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.97      0.98      0.98      3435
                1       0.94      0.90      0.92      1065
-    
+
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.96      0.94      0.95      4500
     weighted avg       0.96      0.96      0.96      4500
-    
+
     Confusion Matrix:
     [[3379   56]
      [ 108  957]]
-    
+
                                            Feature     Coef.
     0                                   intercept.  0.155602
     1                                Work_accident -1.143174
     2                        promotion_last_5years -0.597843
     3                                       salary -0.652169
     4                                department_IT -0.355823
-    5                             department_RandD -0.441449
+    5                             department_RandD -0.441450
     6                        department_accounting -0.095917
     7                                department_hr  0.447624
     8                        department_management -0.163427
@@ -4487,46 +4487,46 @@ lr_run(lr, X_fe_encoded_train, y_fe_encoded_train, X_fe_encoded_test, y_fe_encod
     16                                workload_low  0.383963
     17                             workload_normal -1.056297
     18                           workload_very low -1.380807
-    19                             efficiency_high  0.631356
-    20                              efficiency_low  1.559049
-    21                           efficiency_normal -0.140877
-    22                         efficiency_very low -2.047439
-    23       time_spend_company_cat_high departure  0.258945
-    24        time_spend_company_cat_low departure -1.051914
-    25         time_spend_company_cat_no departure -1.793281
-    26  time_spend_company_cat_very high departure  2.588338
-    27                  number_project_cat_extreme  3.202322
-    28                   number_project_cat_normal -1.490338
-    29                 number_project_cat_too high -0.978540
-    30                  number_project_cat_too low -0.731354
-    31           average_montly_hours_bin_(0, 125] -1.380807
-    32         average_montly_hours_bin_(125, 131]  0.087262
-    33         average_montly_hours_bin_(131, 161] -0.283742
-    34         average_montly_hours_bin_(161, 216] -0.697097
-    35         average_montly_hours_bin_(216, 274] -0.167288
-    36         average_montly_hours_bin_(274, 287]  0.161469
-    37         average_montly_hours_bin_(287, 310]  2.282292
-    38         attitude_happy and high performance  0.807235
-    39                    attitude_low performance -0.693405
-    40                             attitude_normal -1.154903
-    41                            attitude_unhappy -1.048763
-    42        attitude_unhappy and low performance  1.378160
-    43                         attitude_very happy -1.938233
-    44                       attitude_very unhappy  2.651998
-    45         satisfaction_level_bin_(0.00, 0.11]  2.651998
-    46         satisfaction_level_bin_(0.11, 0.35] -0.522950
-    47         satisfaction_level_bin_(0.35, 0.46]  0.552467
-    48         satisfaction_level_bin_(0.46, 0.71] -0.530850
-    49         satisfaction_level_bin_(0.71, 0.92] -0.200445
-    50         satisfaction_level_bin_(0.92, 1.00] -1.948131
-    51            last_evaluation_bin_(0.00, 0.44] -0.693405
-    52            last_evaluation_bin_(0.44, 0.57]  0.121621
-    53            last_evaluation_bin_(0.57, 0.76]  0.748939
-    54            last_evaluation_bin_(0.76, 1.00] -0.175065
-    55                    project_performance_high  0.419734
-    56                     project_performance_low  0.855019
-    57                  project_performance_normal -0.579259
-    58                project_performance_very low -0.693405
+    19       time_spend_company_cat_high departure  0.258945
+    20        time_spend_company_cat_low departure -1.051914
+    21         time_spend_company_cat_no departure -1.793281
+    22  time_spend_company_cat_very high departure  2.588338
+    23           average_montly_hours_bin_(0, 125] -1.380807
+    24         average_montly_hours_bin_(125, 131]  0.087262
+    25         average_montly_hours_bin_(131, 161] -0.283742
+    26         average_montly_hours_bin_(161, 216] -0.697097
+    27         average_montly_hours_bin_(216, 274] -0.167288
+    28         average_montly_hours_bin_(274, 287]  0.161469
+    29         average_montly_hours_bin_(287, 310]  2.282292
+    30            last_evaluation_bin_(0.00, 0.44] -0.693405
+    31            last_evaluation_bin_(0.44, 0.57]  0.121621
+    32            last_evaluation_bin_(0.57, 0.76]  0.748939
+    33            last_evaluation_bin_(0.76, 1.00] -0.175065
+    34         attitude_happy and high performance  0.807235
+    35                    attitude_low performance -0.693405
+    36                             attitude_normal -1.154903
+    37                            attitude_unhappy -1.048762
+    38        attitude_unhappy and low performance  1.378160
+    39                         attitude_very happy -1.938233
+    40                       attitude_very unhappy  2.651998
+    41                    project_performance_high  0.419734
+    42                     project_performance_low  0.855019
+    43                  project_performance_normal -0.579259
+    44                project_performance_very low -0.693405
+    45                  number_project_cat_extreme  3.202322
+    46                   number_project_cat_normal -1.490338
+    47                 number_project_cat_too high -0.978540
+    48                  number_project_cat_too low -0.731354
+    49         satisfaction_level_bin_(0.00, 0.11]  2.651998
+    50         satisfaction_level_bin_(0.11, 0.35] -0.522950
+    51         satisfaction_level_bin_(0.35, 0.46]  0.552467
+    52         satisfaction_level_bin_(0.46, 0.71] -0.530850
+    53         satisfaction_level_bin_(0.71, 0.92] -0.200445
+    54         satisfaction_level_bin_(0.92, 1.00] -1.948131
+    55                             efficiency_high  0.631356
+    56                              efficiency_low  1.559049
+    57                           efficiency_normal -0.140877
+    58                         efficiency_very low -2.047439
 
 
 
@@ -4535,10 +4535,148 @@ plot_roc(lr, X_fe_encoded_test, y_fe_encoded_test)
 ```
 
 
-![png](output_189_0.png)
+![png](assets/images/output_189_0.png)
 
 
 The Recursive Feature Elimination (RFE) method is used to select the most relevant features for the model.
+
+
+```python
+accuracies = pd.DataFrame(columns=['features','accuracy', 'cols'])
+print('Iterations:')
+
+for i in range(1, len(X_fe_encoded.columns)+1):
+    logreg = LogisticRegression(solver='lbfgs', max_iter=250)
+    rfe = RFE(logreg, i)
+    rfe = rfe.fit(X_fe_encoded, y_fe_encoded.values.ravel())
+
+    cols_rfe = list(X_fe_encoded.loc[:, rfe.support_])
+    X_rfe_sel = X_fe_encoded_train[cols_rfe]
+    X_rfe_test_sel = X_fe_encoded_test[cols_rfe]
+
+    result = logreg.fit(X_rfe_sel, y_fe_encoded_train.values.ravel())
+    acc_test = logreg.score(X_rfe_test_sel, y_fe_encoded_test)
+
+    accuracies.loc[i] = [i, acc_test, cols_rfe]
+    print(i, end='   ')
+```
+
+    Iterations:
+    1   2   3   4   5   6   7   8   9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36   37   38   39   40   41   42   43   44   45   46   47   48   49   50   51   52   53   54   55   56   57   58   
+
+
+```python
+# Line Plot
+plt.figure(figsize=(15,5))
+sns.lineplot(x = accuracies['features'],
+             y = accuracies['accuracy'],
+             color = 'steelblue')#.axes.set_xlim(min(hr.last_evaluation),max(hr.last_evaluation))
+plt.tight_layout()
+```
+
+
+![png](assets/images/output_192_0.png)
+
+
+
+```python
+accuracies.nlargest(10, 'accuracy')
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>features</th>
+      <th>accuracy</th>
+      <th>cols</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14</th>
+      <td>14</td>
+      <td>0.967111</td>
+      <td>[workload_extreme, workload_normal, time_spend...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>18</td>
+      <td>0.966889</td>
+      <td>[workload_extreme, workload_normal, time_spend...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>19</td>
+      <td>0.966667</td>
+      <td>[workload_extreme, workload_normal, workload_v...</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>20</td>
+      <td>0.966667</td>
+      <td>[Work_accident, workload_extreme, workload_nor...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>15</td>
+      <td>0.966444</td>
+      <td>[workload_extreme, workload_normal, time_spend...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>16</td>
+      <td>0.966444</td>
+      <td>[workload_extreme, workload_normal, time_spend...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>17</td>
+      <td>0.966444</td>
+      <td>[workload_extreme, workload_normal, time_spend...</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>22</td>
+      <td>0.965556</td>
+      <td>[Work_accident, workload_extreme, workload_nor...</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>21</td>
+      <td>0.965333</td>
+      <td>[Work_accident, workload_extreme, workload_nor...</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>29</td>
+      <td>0.964889</td>
+      <td>[Work_accident, promotion_last_5years, workloa...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+The best model is found with 14 features, for an accuracy of 0.967.
 
 
 ```python
@@ -4553,7 +4691,7 @@ X_rfe = hr_fe_encoded.loc[:, features_rfe]
 y_rfe = hr_fe_encoded.loc[:, target]
 
 logreg = LogisticRegression(solver='lbfgs', max_iter=250)
-rfe = RFE(logreg, 15)
+rfe = RFE(logreg, accuracies.nlargest(1,'accuracy').features.values.ravel()[0])
 rfe = rfe.fit(X_rfe, y_rfe)
 
 print(sum(rfe.support_),'selected features:')
@@ -4561,27 +4699,28 @@ for i in list(X_rfe.loc[:, rfe.support_]):
     print(i)
 ```
 
-    15 selected features:
+    14 selected features:
     workload_extreme
     workload_normal
-    efficiency_low
-    efficiency_very low
     time_spend_company_cat_no departure
     time_spend_company_cat_very high departure
-    number_project_cat_extreme
     average_montly_hours_bin_(287, 310]
     attitude_normal
     attitude_unhappy
-    attitude_unhappy and low performance
     attitude_very happy
     attitude_very unhappy
+    number_project_cat_extreme
     satisfaction_level_bin_(0.00, 0.11]
     satisfaction_level_bin_(0.92, 1.00]
+    efficiency_low
+    efficiency_very low
 
 
 ## Final Metric
 
-A final model is tested with the 15 selected features.
+### Initial Dataset
+
+A final model is tested with the 14 selected features.
 
 
 ```python
@@ -4597,51 +4736,50 @@ print()
 lr_run(lr, X_sel_train, y_sel_train, X_sel_test, y_sel_test)
 ```
 
-    10-fold cross validation average accuracy: 0.965
-    
+    10-fold cross validation average accuracy: 0.964
+
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
     Iteration  4 | Accuracy: 0.97
     Iteration  5 | Accuracy: 0.97
-    Iteration  6 | Accuracy: 0.97
+    Iteration  6 | Accuracy: 0.96
     Iteration  7 | Accuracy: 0.98
     Iteration  8 | Accuracy: 0.97
     Iteration  9 | Accuracy: 0.96
-    Iteration 10 | Accuracy: 0.96
-    
-    Accuracy on test: 0.966
-    
+    Iteration 10 | Accuracy: 0.95
+
+    Accuracy on test: 0.967
+
                   precision    recall  f1-score   support
-    
+
                0       0.96      1.00      0.98      3435
-               1       0.98      0.87      0.92      1065
-    
+               1       0.98      0.88      0.93      1065
+
        micro avg       0.97      0.97      0.97      4500
-       macro avg       0.97      0.93      0.95      4500
+       macro avg       0.97      0.94      0.95      4500
     weighted avg       0.97      0.97      0.97      4500
-    
+
     Confusion Matrix:
-    [[3418   17]
-     [ 134  931]]
-    
+    [[3419   16]
+     [ 132  933]]
+
                                            Feature     Coef.
-    0                                   intercept. -0.591944
-    1                             workload_extreme  2.179019
-    2                              workload_normal -2.076743
-    3                               efficiency_low  2.247488
-    4                          efficiency_very low -4.374203
-    5          time_spend_company_cat_no departure -1.945288
-    6   time_spend_company_cat_very high departure  2.473079
-    7                   number_project_cat_extreme  3.922200
-    8          average_montly_hours_bin_(287, 310]  2.179019
-    9                              attitude_normal -2.539354
-    10                            attitude_unhappy -2.014794
-    11        attitude_unhappy and low performance  1.774068
-    12                         attitude_very happy -2.282289
-    13                       attitude_very unhappy  2.669274
-    14         satisfaction_level_bin_(0.00, 0.11]  2.669274
-    15         satisfaction_level_bin_(0.92, 1.00] -2.298017
+    0                                   intercept. -0.375952
+    1                             workload_extreme  2.245120
+    2                              workload_normal -2.183617
+    3          time_spend_company_cat_no departure -2.016273
+    4   time_spend_company_cat_very high departure  2.403233
+    5          average_montly_hours_bin_(287, 310]  2.245120
+    6                              attitude_normal -2.936478
+    7                             attitude_unhappy -2.295986
+    8                          attitude_very happy -2.423485
+    9                        attitude_very unhappy  2.582233
+    10                  number_project_cat_extreme  3.987229
+    11         satisfaction_level_bin_(0.00, 0.11]  2.582233
+    12         satisfaction_level_bin_(0.92, 1.00] -2.448987
+    13                              efficiency_low  3.295257
+    14                         efficiency_very low -4.182167
 
 
 
@@ -4650,55 +4788,10 @@ plot_roc(lr, X_sel_test, y_sel_test)
 ```
 
 
-![png](output_196_0.png)
+![png](assets/images/output_201_0.png)
 
 
-The model returns the accuracy of 0.966. The recall for employees who left the company now reaches 87%, which will allow the management to better predict which employees have a high probability to leave.
-
-
-```python
-def lr_run_several(model, X_train, y_train, X_test, y_test):
-    result = model.fit(X_train, y_train.values.ravel())
-
-    y_pred = model.predict(X_test)
-    acc_test = model.score(X_test, y_test)
-    coefficients = pd.concat([pd.DataFrame(X_train.columns, columns=['Feature']), pd.DataFrame(np.transpose(model.coef_), columns=['Coef.'])], axis = 1)
-    coefficients.loc[-1] = ['intercept.', model.intercept_[0]]
-    coefficients.index = coefficients.index + 1
-    coefficients = coefficients.sort_index()
-    
-    return [i, acc_test]
-```
-
-
-```python
-accuracies = pd.DataFrame(columns=['features','accuracy'])
-for i in range(1, len(X_fe_encoded.columns)+1):
-    logreg = LogisticRegression(solver='lbfgs', max_iter=250)
-    rfe = RFE(logreg, i)
-    rfe = rfe.fit(X_fe_encoded, y_fe_encoded.values.ravel())
-    
-    cols_rfe = list(X_fe_encoded.loc[:, rfe.support_])
-    X_rfe_sel = X_fe_encoded_train[cols_rfe]
-    X_rfe_test_sel = X_fe_encoded_test[cols_rfe]
-
-    result_model = lr_run_several(lr, X_rfe_sel, y_fe_encoded_train, X_rfe_test_sel, y_fe_encoded_test)
-    accuracies.loc[i] = result_model
-```
-
-
-```python
-# Line Plot
-plt.figure(figsize=(15,5))
-sns.lineplot(x = accuracies['features'],
-             y = accuracies['accuracy'],
-             color = 'steelblue')#.axes.set_xlim(min(hr.last_evaluation),max(hr.last_evaluation))
-plt.tight_layout()
-```
-
-
-![png](output_200_0.png)
-
+The model returns the accuracy of 0.967. The recall for employees who left the company now reaches 88%, which will allow the management to better predict which employees have a high probability to leave.
 
 ### Over Sampling with SMOTE
 
@@ -4740,7 +4833,7 @@ lr_run(lr, os_data_X, os_data_y, X_smote_test, y_smote_test)
 ```
 
     10-fold cross validation average accuracy: 0.963
-    
+
     Iteration  1 | Accuracy: 0.96
     Iteration  2 | Accuracy: 0.95
     Iteration  3 | Accuracy: 0.96
@@ -4751,90 +4844,228 @@ lr_run(lr, os_data_X, os_data_y, X_smote_test, y_smote_test)
     Iteration  8 | Accuracy: 0.97
     Iteration  9 | Accuracy: 0.97
     Iteration 10 | Accuracy: 0.98
-    
+
     Accuracy on test: 0.957
-    
+
                   precision    recall  f1-score   support
-    
+
                0       0.98      0.97      0.97      3435
                1       0.90      0.92      0.91      1065
-    
+
        micro avg       0.96      0.96      0.96      4500
        macro avg       0.94      0.95      0.94      4500
     weighted avg       0.96      0.96      0.96      4500
-    
+
     Confusion Matrix:
     [[3321  114]
      [  81  984]]
-    
+
                                            Feature      Coef.
-    0                                   intercept.  17.976399
-    1                                Work_accident  -1.539756
-    2                        promotion_last_5years  -0.873476
-    3                                       salary  -0.822123
-    4                                department_IT  -3.551897
-    5                             department_RandD  -3.638711
-    6                        department_accounting  -3.179873
-    7                                department_hr  -2.709830
-    8                        department_management  -3.366476
-    9                         department_marketing  -3.216329
-    10                      department_product_mng  -3.248613
-    11                            department_sales  -3.247117
-    12                          department_support  -2.799553
-    13                        department_technical  -2.786145
-    14                            workload_extreme   1.228020
-    15                               workload_high  -1.369039
-    16                                workload_low  -0.330138
-    17                             workload_normal  -2.299851
-    18                           workload_very low  -2.293558
-    19                             efficiency_high   0.772487
-    20                              efficiency_low   1.066719
-    21                           efficiency_normal  -0.386656
-    22                         efficiency_very low  -3.707648
-    23       time_spend_company_cat_high departure  -2.356638
-    24        time_spend_company_cat_low departure  -3.895006
-    25         time_spend_company_cat_no departure  -4.218037
-    26  time_spend_company_cat_very high departure   0.010307
-    27                  number_project_cat_extreme   1.972976
-    28                   number_project_cat_normal  -3.373538
-    29                 number_project_cat_too high  -2.785653
-    30                  number_project_cat_too low  -3.104852
-    31           average_montly_hours_bin_(0, 125]  -2.293558
-    32         average_montly_hours_bin_(125, 131]  -1.623699
-    33         average_montly_hours_bin_(131, 161]  -2.149683
-    34         average_montly_hours_bin_(161, 216]  -2.380136
-    35         average_montly_hours_bin_(216, 274]  -2.063163
-    36         average_montly_hours_bin_(274, 287]  -1.517280
-    37         average_montly_hours_bin_(287, 310]   1.228020
-    38         attitude_happy and high performance   0.666769
-    39                    attitude_low performance  -1.594786
-    40                             attitude_normal  -1.273408
-    41                            attitude_unhappy  -1.750675
-    42        attitude_unhappy and low performance   0.762496
-    43                         attitude_very happy  -3.147099
-    44                       attitude_very unhappy   1.794169
-    45         satisfaction_level_bin_(0.00, 0.11]   1.794169
-    46         satisfaction_level_bin_(0.11, 0.35]  -2.184667
-    47         satisfaction_level_bin_(0.35, 0.46]  -1.079721
-    48         satisfaction_level_bin_(0.46, 0.71]  -2.742689
-    49         satisfaction_level_bin_(0.71, 0.92]  -2.136168
-    50         satisfaction_level_bin_(0.92, 1.00]  -3.187668
-    51            last_evaluation_bin_(0.00, 0.44]  -1.594786
-    52            last_evaluation_bin_(0.44, 0.57]  -2.717754
-    53            last_evaluation_bin_(0.57, 0.76]  -2.229406
-    54            last_evaluation_bin_(0.76, 1.00]  -3.531638
-    55                    project_performance_high  -0.361150
-    56                     project_performance_low   0.354928
-    57                  project_performance_normal  -1.386898
-    58                project_performance_very low  -1.594786
+    0                                   intercept.  17.979973
+    1                                Work_accident  -1.539814
+    2                        promotion_last_5years  -0.873542
+    3                                       salary  -0.822126
+    4                                department_IT  -3.552008
+    5                             department_RandD  -3.639017
+    6                        department_accounting  -3.180176
+    7                                department_hr  -2.710086
+    8                        department_management  -3.366177
+    9                         department_marketing  -3.216680
+    10                      department_product_mng  -3.248802
+    11                            department_sales  -3.247247
+    12                          department_support  -2.799619
+    13                        department_technical  -2.786227
+    14                            workload_extreme   1.227670
+    15                               workload_high  -1.370041
+    16                                workload_low  -0.331572
+    17                             workload_normal  -2.301065
+    18                           workload_very low  -2.294460
+    19       time_spend_company_cat_high departure  -2.357160
+    20        time_spend_company_cat_low departure  -3.895673
+    21         time_spend_company_cat_no departure  -4.218755
+    22  time_spend_company_cat_very high departure   0.009826
+    23           average_montly_hours_bin_(0, 125]  -2.294460
+    24         average_montly_hours_bin_(125, 131]  -1.624161
+    25         average_montly_hours_bin_(131, 161]  -2.149702
+    26         average_montly_hours_bin_(161, 216]  -2.380130
+    27         average_montly_hours_bin_(216, 274]  -2.063447
+    28         average_montly_hours_bin_(274, 287]  -1.517476
+    29         average_montly_hours_bin_(287, 310]   1.227670
+    30            last_evaluation_bin_(0.00, 0.44]  -1.594999
+    31            last_evaluation_bin_(0.44, 0.57]  -2.717905
+    32            last_evaluation_bin_(0.57, 0.76]  -2.229557
+    33            last_evaluation_bin_(0.76, 1.00]  -3.532066
+    34         attitude_happy and high performance   0.667297
+    35                    attitude_low performance  -1.594999
+    36                             attitude_normal  -1.273042
+    37                            attitude_unhappy  -1.750187
+    38        attitude_unhappy and low performance   0.763155
+    39                         attitude_very happy  -3.146609
+    40                       attitude_very unhappy   1.794301
+    41                    project_performance_high  -0.362548
+    42                     project_performance_low   0.353313
+    43                  project_performance_normal  -1.388324
+    44                project_performance_very low  -1.594999
+    45                  number_project_cat_extreme   1.971823
+    46                   number_project_cat_normal  -3.373701
+    47                 number_project_cat_too high  -2.785609
+    48                  number_project_cat_too low  -3.104655
+    49         satisfaction_level_bin_(0.00, 0.11]   1.794301
+    50         satisfaction_level_bin_(0.11, 0.35]  -2.184787
+    51         satisfaction_level_bin_(0.35, 0.46]  -1.079961
+    52         satisfaction_level_bin_(0.46, 0.71]  -2.742574
+    53         satisfaction_level_bin_(0.71, 0.92]  -2.136022
+    54         satisfaction_level_bin_(0.92, 1.00]  -3.187208
+    55                             efficiency_high   0.772209
+    56                              efficiency_low   1.066479
+    57                           efficiency_normal  -0.387084
+    58                         efficiency_very low  -3.708358
 
 
 The accuracy is consistent with the initial dataset. The RFE algorithm is used to find the most relevant features.
 
 
 ```python
+accuracies_smote = pd.DataFrame(columns=['features','accuracy', 'cols'])
+print('Iterations:')
+
+for i in range(1, len(os_data_X.columns)+1):
+    logreg = LogisticRegression(solver='lbfgs', max_iter=250)
+    rfe_smote = RFE(logreg, i)
+    rfe_smote = rfe_smote.fit(os_data_X, os_data_y.values.ravel())
+
+    cols_rfe_smote = list(os_data_X.loc[:, rfe_smote.support_])
+    os_data_X_sel = os_data_X[cols_rfe_smote]
+    X_smote_test_sel = X_smote_test[cols_rfe_smote]
+
+    result = logreg.fit(os_data_X_sel, os_data_y.values.ravel())
+    acc_test = logreg.score(X_smote_test_sel, y_smote_test)
+
+    accuracies_smote.loc[i] = [i, acc_test, cols_rfe_smote]
+    print(i, end='   ')
+```
+
+    Iterations:
+    1   2   3   4   5   6   7   8   9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36   37   38   39   40   41   42   43   44   45   46   47   48   49   50   51   52   53   54   55   56   57   58   
+
+
+```python
+# Line Plot
+plt.figure(figsize=(15,5))
+sns.lineplot(x = accuracies_smote['features'],
+             y = accuracies_smote['accuracy'],
+             color = 'steelblue')#.axes.set_xlim(min(hr.last_evaluation),max(hr.last_evaluation))
+plt.tight_layout()
+```
+
+
+![png](assets/images/output_209_0.png)
+
+
+
+```python
+accuracies_smote.nlargest(10, 'accuracy')
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>features</th>
+      <th>accuracy</th>
+      <th>cols</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>50</th>
+      <td>50</td>
+      <td>0.957111</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>51</td>
+      <td>0.956889</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>52</td>
+      <td>0.956889</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>53</td>
+      <td>0.956889</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>54</td>
+      <td>0.956889</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>55</td>
+      <td>0.956889</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>56</td>
+      <td>0.956667</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>57</td>
+      <td>0.956667</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>58</td>
+      <td>0.956667</td>
+      <td>[Work_accident, promotion_last_5years, salary,...</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>49</td>
+      <td>0.953333</td>
+      <td>[Work_accident, promotion_last_5years, departm...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+The best model is found with 50 features, for an accuracy of 0.957.
+
+
+```python
 logreg = LogisticRegression(solver='lbfgs', max_iter=250)
-rfe_smote = RFE(logreg, 15)
+rfe_smote = RFE(logreg, accuracies_smote.nlargest(1,'accuracy').features.values.ravel()[0])
 rfe_smote = rfe_smote.fit(os_data_X, os_data_y.values.ravel())
 
 print(sum(rfe_smote.support_),'selected features:')
@@ -4842,25 +5073,60 @@ for i in list(os_data_X.loc[:, rfe_smote.support_]):
     print(i)
 ```
 
-    15 selected features:
+    50 selected features:
+    Work_accident
+    promotion_last_5years
+    salary
     department_IT
     department_RandD
     department_accounting
+    department_hr
     department_management
     department_marketing
     department_product_mng
     department_sales
+    department_support
     department_technical
     workload_extreme
-    efficiency_very low
+    workload_high
+    workload_normal
+    workload_very low
+    time_spend_company_cat_high departure
+    time_spend_company_cat_low departure
     time_spend_company_cat_no departure
+    average_montly_hours_bin_(0, 125]
+    average_montly_hours_bin_(125, 131]
+    average_montly_hours_bin_(131, 161]
+    average_montly_hours_bin_(161, 216]
+    average_montly_hours_bin_(216, 274]
+    average_montly_hours_bin_(274, 287]
+    average_montly_hours_bin_(287, 310]
+    last_evaluation_bin_(0.00, 0.44]
+    last_evaluation_bin_(0.44, 0.57]
+    last_evaluation_bin_(0.57, 0.76]
+    last_evaluation_bin_(0.76, 1.00]
+    attitude_low performance
     attitude_normal
+    attitude_unhappy
     attitude_very happy
     attitude_very unhappy
+    project_performance_normal
+    project_performance_very low
+    number_project_cat_extreme
+    number_project_cat_normal
+    number_project_cat_too high
+    number_project_cat_too low
+    satisfaction_level_bin_(0.00, 0.11]
+    satisfaction_level_bin_(0.11, 0.35]
+    satisfaction_level_bin_(0.46, 0.71]
+    satisfaction_level_bin_(0.71, 0.92]
     satisfaction_level_bin_(0.92, 1.00]
+    efficiency_high
+    efficiency_low
+    efficiency_very low
 
 
-The selected columns are really different than with the initial dataset. However, the model is built to test its accuracy.
+The selected columns are really numerous compared to the initial dataset. However, the model is built to check its metrics.
 
 
 ```python
@@ -4876,81 +5142,277 @@ print()
 lr_run(lr, os_data_X_sel, os_data_y, X_smote_test_sel, y_smote_test)
 ```
 
-    10-fold cross validation average accuracy: 0.856
-    
-    Iteration  1 | Accuracy: 0.81
-    Iteration  2 | Accuracy: 0.81
-    Iteration  3 | Accuracy: 0.80
-    Iteration  4 | Accuracy: 0.80
-    Iteration  5 | Accuracy: 0.81
-    Iteration  6 | Accuracy: 0.81
-    Iteration  7 | Accuracy: 0.87
-    Iteration  8 | Accuracy: 0.94
-    Iteration  9 | Accuracy: 0.94
-    Iteration 10 | Accuracy: 0.95
-    
-    Accuracy on test: 0.795
-    
+    10-fold cross validation average accuracy: 0.962
+
+    Iteration  1 | Accuracy: 0.96
+    Iteration  2 | Accuracy: 0.95
+    Iteration  3 | Accuracy: 0.96
+    Iteration  4 | Accuracy: 0.95
+    Iteration  5 | Accuracy: 0.96
+    Iteration  6 | Accuracy: 0.95
+    Iteration  7 | Accuracy: 0.97
+    Iteration  8 | Accuracy: 0.97
+    Iteration  9 | Accuracy: 0.97
+    Iteration 10 | Accuracy: 0.97
+
+    Accuracy on test: 0.957
+
                   precision    recall  f1-score   support
-    
-               0       0.98      0.74      0.85      3435
-               1       0.54      0.96      0.69      1065
-    
-       micro avg       0.79      0.79      0.79      4500
-       macro avg       0.76      0.85      0.77      4500
-    weighted avg       0.88      0.79      0.81      4500
-    
+
+               0       0.98      0.97      0.97      3435
+               1       0.90      0.92      0.91      1065
+
+       micro avg       0.96      0.96      0.96      4500
+       macro avg       0.94      0.95      0.94      4500
+    weighted avg       0.96      0.96      0.96      4500
+
     Confusion Matrix:
-    [[2558  877]
-     [  47 1018]]
-    
-                                    Feature     Coef.
-    0                            intercept.  1.560786
-    1                         department_IT -0.674815
-    2                      department_RandD -1.325480
-    3                 department_accounting -0.638107
-    4                 department_management -0.901921
-    5                  department_marketing -0.553714
-    6                department_product_mng -0.484544
-    7                      department_sales -0.531341
-    8                  department_technical -0.495397
-    9                      workload_extreme  3.494548
-    10                  efficiency_very low -5.436631
-    11  time_spend_company_cat_no departure -4.097232
-    12                      attitude_normal -3.780539
-    13                  attitude_very happy -3.329590
-    14                attitude_very unhappy  4.548139
-    15  satisfaction_level_bin_(0.92, 1.00] -3.357108
+    [[3322  113]
+     [  80  985]]
+
+                                      Feature      Coef.
+    0                              intercept.  17.376456
+    1                           Work_accident  -1.540492
+    2                   promotion_last_5years  -0.877758
+    3                                  salary  -0.827350
+    4                           department_IT  -3.555270
+    5                        department_RandD  -3.633989
+    6                   department_accounting  -3.178568
+    7                           department_hr  -2.706043
+    8                   department_management  -3.374921
+    9                    department_marketing  -3.230675
+    10                 department_product_mng  -3.256803
+    11                       department_sales  -3.244566
+    12                     department_support  -2.799412
+    13                   department_technical  -2.786458
+    14                       workload_extreme   1.262675
+    15                          workload_high  -1.314907
+    16                        workload_normal  -2.114032
+    17                      workload_very low  -2.160452
+    18  time_spend_company_cat_high departure  -2.366082
+    19   time_spend_company_cat_low departure  -3.898360
+    20    time_spend_company_cat_no departure  -4.220065
+    21      average_montly_hours_bin_(0, 125]  -2.160452
+    22    average_montly_hours_bin_(125, 131]  -1.748431
+    23    average_montly_hours_bin_(131, 161]  -2.290330
+    24    average_montly_hours_bin_(161, 216]  -2.490469
+    25    average_montly_hours_bin_(216, 274]  -2.054918
+    26    average_montly_hours_bin_(274, 287]  -1.536961
+    27    average_montly_hours_bin_(287, 310]   1.262675
+    28       last_evaluation_bin_(0.00, 0.44]  -1.708380
+    29       last_evaluation_bin_(0.44, 0.57]  -2.715554
+    30       last_evaluation_bin_(0.57, 0.76]  -2.290356
+    31       last_evaluation_bin_(0.76, 1.00]  -3.664226
+    32               attitude_low performance  -1.708380
+    33                        attitude_normal  -1.835470
+    34                       attitude_unhappy  -2.648314
+    35                    attitude_very happy  -3.123197
+    36                  attitude_very unhappy   1.817110
+    37             project_performance_normal  -1.234341
+    38           project_performance_very low  -1.708380
+    39             number_project_cat_extreme   1.958954
+    40              number_project_cat_normal  -3.429596
+    41            number_project_cat_too high  -2.845605
+    42             number_project_cat_too low  -3.041480
+    43    satisfaction_level_bin_(0.00, 0.11]   1.817110
+    44    satisfaction_level_bin_(0.11, 0.35]  -1.231504
+    45    satisfaction_level_bin_(0.46, 0.71]  -2.114606
+    46    satisfaction_level_bin_(0.71, 0.92]  -1.447229
+    47    satisfaction_level_bin_(0.92, 1.00]  -3.145082
+    48                        efficiency_high   1.124227
+    49                         efficiency_low   1.463810
+    50                    efficiency_very low  -3.650808
 
 
 
 ```python
-accuracies_smote = pd.DataFrame(columns=['features','accuracy'])
-for i in range(1, len(os_data_X.columns)+1):
-    logreg = LogisticRegression(solver='lbfgs', max_iter=250)
-    rfe_smote = RFE(logreg, i)
-    rfe_smote = rfe_smote.fit(os_data_X, os_data_y.values.ravel())
-    
-    cols_smote = list(os_data_X.loc[:, rfe_smote.support_])
-    os_data_X_sel = os_data_X[cols_smote]
-    X_smote_test_sel = X_smote_test[cols_smote]
-
-    result_model = lr_run_several(lr, os_data_X_sel, os_data_y, X_smote_test_sel, y_smote_test)
-    accuracies_smote.loc[i] = result_model
+plot_roc(lr, X_smote_test_sel, y_smote_test)
 ```
+
+
+![png](assets/images/output_216_0.png)
+
+
+The model run on over-sampled dataset has an accuracy really closed to the model run on the original dataset. We can conclude that the imbalanced proportions of the target in our dataset didn't insert bias in our model.  
+
+However, as more variables are necessary to achieve an equivalent accuracy, it indicates that the feature selection might have been biased by our feature construction. In fact, the binned features were built to fit the data, and allow to remove many features from our initial model. But this technique makes our model over-fit the data, reducing its chances to achieve the same accuracy with a new dataset. This might explain why the Recursive Feature Elimination cannot select the same features:
 
 
 ```python
-# Line Plot
-plt.figure(figsize=(15,5))
-sns.lineplot(x = accuracies_smote['features'],
-             y = accuracies_smote['accuracy'],
-             color = 'steelblue')#.axes.set_xlim(min(hr.last_evaluation),max(hr.last_evaluation))
-plt.tight_layout()
+list_features = pd.DataFrame({'Initial':sorted(list(accuracies.loc[accuracies.features == 14]['cols'])[0]),
+                          'SMOTE':sorted(list(accuracies_smote.loc[accuracies_smote.features == 14]['cols'])[0])})
+list_features
 ```
 
 
-![png](output_211_0.png)
 
 
-However, the previous over-sampled results with all variables were close enough to our model to conclude that the imbalanced proportions of the target in our dataset didn't insert bias in our model.
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Initial</th>
+      <th>SMOTE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>attitude_normal</td>
+      <td>attitude_normal</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>attitude_unhappy</td>
+      <td>attitude_very happy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>attitude_very happy</td>
+      <td>average_montly_hours_bin_(287, 310]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>attitude_very unhappy</td>
+      <td>department_IT</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>average_montly_hours_bin_(287, 310]</td>
+      <td>department_RandD</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>efficiency_low</td>
+      <td>department_accounting</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>efficiency_very low</td>
+      <td>department_management</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>number_project_cat_extreme</td>
+      <td>department_marketing</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>satisfaction_level_bin_(0.00, 0.11]</td>
+      <td>department_sales</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>satisfaction_level_bin_(0.92, 1.00]</td>
+      <td>department_technical</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>time_spend_company_cat_no departure</td>
+      <td>efficiency_very low</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>time_spend_company_cat_very high departure</td>
+      <td>satisfaction_level_bin_(0.00, 0.11]</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>workload_extreme</td>
+      <td>satisfaction_level_bin_(0.92, 1.00]</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>workload_normal</td>
+      <td>time_spend_company_cat_no departure</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+However, the model can be tested using the exact same selection of columns than the ones selected by the initial RFE.
+
+
+```python
+cols_1 = cols.copy()
+cols_1.remove('left')
+print(cols_1)
+os_data_X_sel_1 = os_data_X[cols_1]
+X_smote_test_sel_1 = X_smote_test[cols_1]
+```
+
+    ['workload_extreme', 'workload_normal', 'time_spend_company_cat_no departure', 'time_spend_company_cat_very high departure', 'average_montly_hours_bin_(287, 310]', 'attitude_normal', 'attitude_unhappy', 'attitude_very happy', 'attitude_very unhappy', 'number_project_cat_extreme', 'satisfaction_level_bin_(0.00, 0.11]', 'satisfaction_level_bin_(0.92, 1.00]', 'efficiency_low', 'efficiency_very low']
+
+
+
+```python
+cv_acc(lr, os_data_X_sel_1, os_data_y, 10, seed)
+print()
+lr_run(lr, os_data_X_sel_1, os_data_y, X_smote_test_sel_1, y_smote_test)
+```
+
+    10-fold cross validation average accuracy: 0.937
+
+    Iteration  1 | Accuracy: 0.95
+    Iteration  2 | Accuracy: 0.93
+    Iteration  3 | Accuracy: 0.95
+    Iteration  4 | Accuracy: 0.93
+    Iteration  5 | Accuracy: 0.94
+    Iteration  6 | Accuracy: 0.94
+    Iteration  7 | Accuracy: 0.94
+    Iteration  8 | Accuracy: 0.93
+    Iteration  9 | Accuracy: 0.93
+    Iteration 10 | Accuracy: 0.93
+
+    Accuracy on test: 0.938
+
+                  precision    recall  f1-score   support
+
+               0       0.98      0.94      0.96      3435
+               1       0.83      0.94      0.88      1065
+
+       micro avg       0.94      0.94      0.94      4500
+       macro avg       0.90      0.94      0.92      4500
+    weighted avg       0.94      0.94      0.94      4500
+
+    Confusion Matrix:
+    [[3224  211]
+     [  69  996]]
+
+                                           Feature     Coef.
+    0                                   intercept.  0.698509
+    1                             workload_extreme  1.946942
+    2                              workload_normal -1.989443
+    3          time_spend_company_cat_no departure -2.883204
+    4   time_spend_company_cat_very high departure  2.039475
+    5          average_montly_hours_bin_(287, 310]  1.946942
+    6                              attitude_normal -2.701934
+    7                             attitude_unhappy -1.732064
+    8                          attitude_very happy -2.828182
+    9                        attitude_very unhappy  2.587483
+    10                  number_project_cat_extreme  3.936500
+    11         satisfaction_level_bin_(0.00, 0.11]  2.587483
+    12         satisfaction_level_bin_(0.92, 1.00] -2.878639
+    13                              efficiency_low  2.863472
+    14                         efficiency_very low -4.951222
+
+
+The resulting accuracy is still really good, which confirms that the initial model didn't have bias due to the imbalance of the dataset.
+
+The high accuracy is anyway driven by the binned features tailored to the dataset. If they work really well for this data, it might not be the case for another dataset. The features should instead be set using standard binning approach, which wouldn't fit as well the data but which would be adaptable to any dataset. That solution would be recommended if the model has to be run in production.

@@ -1,0 +1,4 @@
+* text=auto
+*.html linguist-detectable=false
+*.gitattributes text
+.gitignore text
